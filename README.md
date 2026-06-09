@@ -1,8 +1,8 @@
-# Methow Valley Riverwalk
+# Winthrop Riverwalk
 
-Website for the Methow Valley Riverwalk project — a community path along the river in Twisp / Winthrop, WA.
+Website for the Winthrop Riverwalk project — a community path along the river in Winthrop, WA (Methow Valley).
 
-Plain HTML / CSS / JS, no build step. Smooth scroll via [Lenis](https://github.com/studio-freight/lenis) (CDN). Inter font from rsms.me.
+Plain HTML / CSS / JS, no build step. Smooth scroll via [Lenis](https://github.com/studio-freight/lenis) (CDN). Inter font from rsms.me for body text; **Rye** (Google Fonts) as the Old-West display face for the wordmark and headings.
 
 ## Posting a weekly update
 

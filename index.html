@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Methow Valley Riverwalk</title>
-  <meta name="description" content="Following the Methow Valley Riverwalk — a community project reconnecting the valley to its river. Weekly progress, the plan, and how to get involved." />
+  <title>Winthrop Riverwalk</title>
+  <meta name="description" content="Following the Winthrop Riverwalk — a community project reconnecting our Old-West town to the river that made it. Weekly progress, the plan, and how to get involved." />
   <link rel="preconnect" href="https://rsms.me/" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&display=swap" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
   <!-- scroll progress -->
@@ -54,8 +57,8 @@
     </div>
 
     <div class="hero-content">
-      <p class="kicker reveal">Twisp · Winthrop · Methow Valley, WA</p>
-      <h1 class="reveal">The Methow Valley<br><span class="accent">Riverwalk</span></h1>
+      <p class="kicker reveal">Winthrop · Methow Valley · Washington</p>
+      <h1 class="reveal">The Winthrop<br><span class="accent">Riverwalk</span></h1>
       <p class="lede reveal">A community-built path reconnecting our towns to the river that made them — followed here, step by step, week by week.</p>
       <div class="hero-actions reveal">
         <a href="#this-week" class="btn btn-primary">See this week</a>
@@ -99,9 +102,16 @@
       </div>
 
       <div class="timeline" id="timeline">
-        <svg class="timeline-flow" viewBox="0 0 24 1000" preserveAspectRatio="none" aria-hidden="true">
-          <path id="flowPath" d="M12,0 C4,160 20,300 12,460 C4,620 20,760 12,1000" fill="none" stroke="#9fe0e4" stroke-width="3"/>
-          <path id="flowPathDraw" d="M12,0 C4,160 20,300 12,460 C4,620 20,760 12,1000" fill="none" stroke="#2b7fb0" stroke-width="3" stroke-linecap="round"/>
+        <svg class="timeline-flow" viewBox="0 0 40 1000" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="riverFlow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#8ad7da"/>
+              <stop offset="1" stop-color="#1d5e87"/>
+            </linearGradient>
+          </defs>
+          <path id="flowBed" d="M20,0 C5,120 35,240 20,360 C5,480 35,600 20,720 C5,840 31,920 20,1000" fill="none" stroke="#d4ebee" stroke-width="13" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+          <path id="flowPathDraw" d="M20,0 C5,120 35,240 20,360 C5,480 35,600 20,720 C5,840 31,920 20,1000" fill="none" stroke="url(#riverFlow)" stroke-width="11" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+          <path id="flowCurrent" d="M20,0 C5,120 35,240 20,360 C5,480 35,600 20,720 C5,840 31,920 20,1000" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 20" vector-effect="non-scaling-stroke"/>
         </svg>
 
         <div class="phase reveal" data-phase="01">
@@ -201,7 +211,7 @@
         <h2>The Riverwalk is built by the valley</h2>
         <p class="section-sub light">Volunteer on a work day, support the project, or just come walk the finished stretches. There's a place for you on the path.</p>
         <div class="hero-actions">
-          <a href="mailto:hello@methowriverwalk.org" class="btn btn-primary">Reach out</a>
+          <a href="mailto:hello@winthropriverwalk.org" class="btn btn-primary">Reach out</a>
           <a href="#top" class="btn btn-ghost light">Back to top</a>
         </div>
       </div>
@@ -214,9 +224,9 @@
         <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
           <path d="M2 20c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 6 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
         </svg>
-        <span>Methow Valley Riverwalk</span>
+        <span>Winthrop Riverwalk</span>
       </div>
-      <p class="footer-note">A community project · Methow Valley, Washington · Updated weekly</p>
+      <p class="footer-note">A community project · Winthrop, Methow Valley, Washington · Updated weekly</p>
     </div>
   </footer>
 
