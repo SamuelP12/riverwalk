@@ -305,6 +305,41 @@
   }, { threshold: 0.4 });
   document.querySelectorAll("[data-count]").forEach(function (el) { countObs.observe(el); });
 
+  /* ---------- live figures (money + length) from data/site.json ---------- */
+  function fmtMoney(n) {
+    if (n >= 1e6) { var m = n / 1e6; return "$" + (m % 1 ? +m.toFixed(2) : m) + "M"; }
+    if (n >= 1e3) return "$" + Math.round(n / 1e3) + "K";
+    return "$" + Math.round(n);
+  }
+  function moneyCount(n) {
+    if (n >= 1e6) return { c: String(Math.round(n / 1e4) / 100), p: "$", s: "M" };
+    return { c: String(Math.round(n / 1e3)), p: "$", s: "K" };
+  }
+  var fundBar = document.getElementById("fundBar");
+  if (fundBar) {
+    var fundObs = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (en.isIntersecting) { en.target.style.width = (en.target.dataset.target || 25) + "%"; fundObs.unobserve(en.target); }
+      });
+    }, { threshold: 0.4 });
+    fundObs.observe(fundBar);
+  }
+  function applySite(d) {
+    try {
+      var f = d.fundraising || {}, t = d.trail || {};
+      var goal = +f.goal || 0, raised = +f.raised || 0, remaining = Math.max(0, goal - raised);
+      var L = document.getElementById("statLength");
+      if (L && t.goalLengthFeet) L.setAttribute("data-count", String(t.goalLengthFeet));
+      var R = document.getElementById("statRaise");
+      if (R) { var mc = moneyCount(remaining); R.setAttribute("data-count", mc.c); R.setAttribute("data-prefix", mc.p); R.setAttribute("data-suffix", mc.s); }
+      var pct = goal > 0 ? Math.max(0, Math.min(100, Math.round(raised / goal * 100))) : 0;
+      if (fundBar) { fundBar.dataset.target = pct; if (fundBar.style.width) fundBar.style.width = pct + "%"; }
+      var ft = document.getElementById("fundText"); if (ft) ft.textContent = fmtMoney(raised) + " raised of " + fmtMoney(goal);
+      var fr = document.getElementById("fundRemaining"); if (fr) fr.textContent = fmtMoney(remaining) + " to go";
+    } catch (e) {}
+  }
+  fetch("data/site.json?v=1").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(applySite).catch(function () {});
+
   /* ---------- email signup ---------- */
   var form = document.getElementById("signupForm");
   if (form) {

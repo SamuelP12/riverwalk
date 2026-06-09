@@ -1,0 +1,10 @@
+{
+  "_comment": "Edit these numbers and the website updates itself (the by-the-numbers stat and the support progress bar). 'raised' = total donations received so far, in US dollars. 'Still to raise' is figured automatically as goal minus raised. 'goalLengthFeet' = the total planned length of the Riverwalk, end to end.",
+  "fundraising": {
+    "goal": 1000000,
+    "raised": 250000
+  },
+  "trail": {
+    "goalLengthFeet": 1500
+  }
+}

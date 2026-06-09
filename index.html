@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&display=swap" />
-  <link rel="stylesheet" href="css/style.css?v=8" />
+  <link rel="stylesheet" href="css/style.css?v=9" />
 </head>
 <body>
   <!-- scroll progress -->
@@ -92,9 +92,8 @@
   <section class="stats" aria-label="Project by the numbers">
     <div class="wrap stats-grid">
       <div class="stat reveal"><div class="num" data-count="30">0</div><div class="label">Years this vision has been in the making</div></div>
-      <div class="stat reveal"><div class="num" data-count="521">0</div><div class="label">Neighbors who weighed in — a record park survey</div></div>
-      <div class="stat reveal"><div class="num" data-count="560" data-suffix=" ft">0</div><div class="label">Of dangerous Hwy 20 fog line the first stretch removes</div></div>
-      <div class="stat reveal"><div class="num" data-count="2.06" data-prefix="$" data-suffix="M">0</div><div class="label">State grant we're working to match</div></div>
+      <div class="stat reveal"><div class="num" id="statLength" data-count="1500" data-suffix=" ft">0</div><div class="label">Feet of riverwalk, end to end — the goal</div></div>
+      <div class="stat reveal"><div class="num" id="statRaise" data-count="750" data-prefix="$" data-suffix="K">0</div><div class="label">Still to raise to finish the trail</div></div>
     </div>
   </section>
 
@@ -221,7 +220,11 @@
       <div class="reveal">
         <span class="eyebrow light">Support the Riverwalk</span>
         <h2>Help us close the gap</h2>
-        <p class="section-sub light">Winthrop's residents, visitors, and neighbors deserve safe passage. We're raising about <strong>$1 million</strong> to match a <strong>$2.06 million</strong> grant from Washington State's Recreation and Conservation Office and finish the trail. Every gift moves it forward.</p>
+        <p class="section-sub light">Winthrop's residents, visitors, and neighbors deserve safe passage. We're raising <strong>$1 million</strong> to match a <strong>$2.06 million</strong> grant from Washington State's Recreation and Conservation Office and finish the trail. Every gift moves it forward.</p>
+        <div class="fund">
+          <div class="fund-bar"><span id="fundBar" data-target="25"></span></div>
+          <p class="fund-text"><span id="fundText">$250K raised of $1M</span> · <strong id="fundRemaining">$750K to go</strong></p>
+        </div>
         <div class="hero-actions">
           <a href="#" class="btn btn-primary" id="donateBtn">Donate</a>
           <a href="mailto:planner@townofwinthrop.com?subject=Winthrop%20Riverwalk" class="btn btn-ghost">Email the team</a>
@@ -253,6 +256,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=6"></script>
+  <script src="js/main.js?v=7"></script>
 </body>
 </html>

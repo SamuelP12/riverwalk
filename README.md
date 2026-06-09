@@ -25,6 +25,23 @@ To post a new week, copy the top block and edit it:
 - `image` — optional. A filename you've dropped into `images/` (e.g. `"week8.jpg"`) or a full URL. Leave it `""` for the blue gradient placeholder.
 - `tags` — optional little labels.
 
+## Money raised & trail length (auto-updating)
+
+The fundraising progress and the goal length live in **`data/site.json`**. Edit the numbers there and the site updates itself — the "Still to raise" stat, the goal-length stat, and the progress bar in the Support section all recalculate automatically.
+
+```json
+{
+  "fundraising": { "goal": 1000000, "raised": 250000 },
+  "trail": { "goalLengthFeet": 1500 }
+}
+```
+
+- `raised` — total donations received so far (US dollars). Update this as gifts come in; **"still to raise" is figured automatically** as `goal − raised`.
+- `goal` — the fundraising target.
+- `goalLengthFeet` — total planned length of the Riverwalk, end to end (set to the real goal).
+
+Like the weekly updates, this is just one small file to edit — no PDFs, no rebuild. (Want truly no-code updates from a Google Sheet instead of editing this file? That's possible too — ask and I'll wire it up.)
+
 ## The YouTube video
 
 In `index.html`, find `data-youtube="dQw4w9WgXcQ"` and swap in the real video ID (the part after `v=` in a YouTube URL).
