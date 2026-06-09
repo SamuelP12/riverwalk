@@ -29,6 +29,10 @@ To post a new week, copy the top block and edit it:
 
 In `index.html`, find `data-youtube="dQw4w9WgXcQ"` and swap in the real video ID (the part after `v=` in a YouTube URL).
 
+## Email sign-up
+
+The "Stay in the loop" form works out of the box with a friendly thank-you, but it doesn't store the address anywhere until you connect a service. To actually collect emails, sign up for a free form/newsletter service (e.g. [Formspree](https://formspree.io), [Buttondown](https://buttondown.email), or Mailchimp) and paste your form URL into the `data-endpoint="..."` attribute on `<form id="signupForm">` in `index.html`. The form will POST the email there; with it blank, it just shows the thank-you message.
+
 ## Deploy
 
 Push to `main`; GitHub Pages serves it. The updates are loaded by `fetch`, so they only show on the published URL (not when opening `index.html` straight from disk).
