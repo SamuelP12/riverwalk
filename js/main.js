@@ -26,7 +26,8 @@
   var progressBar = document.getElementById("progressBar");
   var nav = document.getElementById("nav");
   var hero = document.querySelector(".hero");
-  var layers = document.querySelectorAll(".layer[data-depth]");
+  var heroRidge = document.querySelector(".hero-ridge");
+  var heroContent = document.querySelector(".hero .hero-content");
 
   function onScroll(scrollY) {
     var y = scrollY != null ? scrollY : window.scrollY;
@@ -52,12 +53,16 @@
   var lastY = 0, mouse = { x: 0, y: 0 };
   function applyParallax() {
     if (reduceMotion || !hero || lastY >= hero.offsetHeight) return;
-    layers.forEach(function (l) {
-      var d = parseFloat(l.getAttribute("data-depth")) || 0;
-      var mx = mouse.x * d * 30;
-      var my = mouse.y * d * 20;
-      l.style.transform = "translate3d(" + mx.toFixed(1) + "px," + (lastY * d + my).toFixed(1) + "px,0)";
-    });
+    // ridge drifts with scroll + cursor (background depth)
+    if (heroRidge) {
+      heroRidge.style.transform = "translate3d(" + (mouse.x * 16).toFixed(1) +
+        "px," + (lastY * 0.22 + mouse.y * 10).toFixed(1) + "px,0)";
+    }
+    // logo + text drift gently opposite the cursor (foreground depth)
+    if (heroContent) {
+      heroContent.style.transform = "translate3d(" + (mouse.x * -14).toFixed(1) +
+        "px," + (mouse.y * -9).toFixed(1) + "px,0)";
+    }
   }
   if (!reduceMotion && hero) {
     hero.addEventListener("pointermove", function (e) {

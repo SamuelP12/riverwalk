@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&display=swap" />
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="stylesheet" href="css/style.css?v=5" />
 </head>
 <body>
   <!-- scroll progress -->
@@ -36,33 +36,17 @@
 
   <!-- hero -->
   <section class="hero" id="top">
-    <div class="hero-scene" aria-hidden="true">
-      <div class="layer sky"></div>
-      <div class="layer hills hills-far" data-depth="0.12"></div>
-      <div class="layer hills hills-mid" data-depth="0.26"></div>
-      <div class="layer hills hills-near" data-depth="0.42"></div>
-      <div class="layer river" data-depth="0.06">
-        <svg class="river-svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="riverGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#7fd3d6"/>
-              <stop offset="1" stop-color="#2b7fb0"/>
-            </linearGradient>
-          </defs>
-          <path class="wave wave1" fill="url(#riverGrad)" d="M0,160 C240,90 480,230 720,160 C960,90 1200,230 1440,160 L1440,320 L0,320 Z"/>
-          <path class="wave wave2" fill="#bfeaf0" opacity=".35" d="M0,180 C240,120 480,250 720,180 C960,120 1200,250 1440,180 L1440,320 L0,320 Z"/>
-        </svg>
-        <div class="shimmer"></div>
-      </div>
+    <div class="hero-bg" aria-hidden="true">
+      <span class="hero-sun"></span>
+      <span class="hero-ridge" data-depth="0.22"></span>
     </div>
 
     <div class="hero-content">
-      <p class="kicker reveal">Winthrop · Methow Valley · Washington</p>
-      <h1 class="reveal">The Winthrop<br><span class="accent">Riverwalk</span></h1>
-      <p class="lede reveal">A community-built path reconnecting our towns to the river that made them — followed here, step by step, week by week.</p>
+      <img class="hero-logo reveal" src="images/logo.png?v=1" width="900" height="687" alt="Winthrop Riverwalk" />
+      <p class="lede reveal">A community-built path reconnecting our Old-West town to the river that made it — followed here, step by step, week by week.</p>
       <div class="hero-actions reveal">
         <a href="#this-week" class="btn btn-primary">See this week</a>
-        <a href="#plan" class="btn btn-ghost">View the plan</a>
+        <a href="#plan" class="btn btn-ghost light">View the plan</a>
       </div>
     </div>
     <a href="#this-week" class="scroll-cue" aria-label="Scroll down"><span></span></a>
@@ -189,7 +173,7 @@
   <!-- email signup -->
   <section class="section newsletter" id="signup">
     <div class="wave-top" aria-hidden="true">
-      <svg viewBox="0 0 2880 70" preserveAspectRatio="none"><path d="M0,40 C240,5 480,75 720,40 C960,5 1200,75 1440,40 C1680,5 1920,75 2160,40 C2400,5 2640,75 2880,40 L2880,70 L0,70 Z" fill="#e9f2ee"/></svg>
+      <svg viewBox="0 0 2880 70" preserveAspectRatio="none"><path d="M0,40 C240,5 480,75 720,40 C960,5 1200,75 1440,40 C1680,5 1920,75 2160,40 C2400,5 2640,75 2880,40 L2880,70 L0,70 Z" fill="#ece4d3"/></svg>
     </div>
     <div class="wrap newsletter-inner reveal">
       <span class="eyebrow">Stay in the loop</span>
@@ -212,7 +196,7 @@
         <p class="section-sub light">Volunteer on a work day, support the project, or just come walk the finished stretches. There's a place for you on the path.</p>
         <div class="hero-actions">
           <a href="mailto:hello@winthropriverwalk.org" class="btn btn-primary">Reach out</a>
-          <a href="#top" class="btn btn-ghost light">Back to top</a>
+          <a href="#top" class="btn btn-ghost">Back to top</a>
         </div>
       </div>
     </div>
@@ -240,6 +224,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=5"></script>
 </body>
 </html>
