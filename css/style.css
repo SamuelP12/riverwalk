@@ -64,9 +64,13 @@ h1,h2{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-heig
 .hero-ridge{position:absolute;left:-6%;right:-6%;bottom:0;height:32%;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1440' height='300' viewBox='0 0 1440 300'><path fill='%236e7257' d='M0,300 L0,200 C160,150 300,232 480,182 C700,120 860,212 1060,170 C1240,134 1360,200 1440,180 L1440,300 Z'/></svg>") repeat-x bottom;background-size:1440px 100%;opacity:.32;will-change:transform}
 @keyframes glow{0%,100%{opacity:.82}50%{opacity:1}}
 @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-80px)}}
-.hero-content{position:relative;z-index:2;max-width:780px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,46px);will-change:transform}
-.hero-logo{width:min(560px,86vw);margin:0 auto 8px;filter:drop-shadow(0 20px 36px rgba(51,53,42,.16));animation:float 7s ease-in-out infinite;animation-delay:.8s}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-content{position:relative;z-index:2;max-width:1140px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,46px);will-change:transform}
+.hero-cover{width:min(1080px,93vw);margin:0 auto 4px;animation:float 7s ease-in-out infinite;animation-delay:1s}
+.cover-scene{display:block;width:100%;filter:drop-shadow(0 16px 28px rgba(51,53,42,.14))}
+.cover-word{display:block;width:88%;margin:clamp(10px,2.4vw,24px) auto 0}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media(max-height:840px){.hero-cover{width:min(840px,88vw)}}
+@media(max-height:680px){.hero-cover{width:min(680px,82vw)}}
 .kicker{font-size:.84rem;letter-spacing:.22em;text-transform:uppercase;font-weight:620;color:var(--teal);margin-bottom:16px}
 .lede{font-size:clamp(1.05rem,2vw,1.35rem);max-width:42ch;margin:16px auto 30px;color:var(--ink-soft);font-weight:440}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
