@@ -113,10 +113,11 @@ h1,h2{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-heig
 /* ===== plan / timeline ===== */
 .plan{background:var(--paper)}
 .timeline{position:relative;padding-left:clamp(28px,6vw,80px)}
-.timeline-flow{position:absolute;left:clamp(2px,2.4vw,30px);top:6px;width:40px;height:100%;overflow:visible;filter:drop-shadow(0 2px 6px rgba(29,94,135,.25))}
-#flowPathDraw{stroke-dasharray:1;stroke-dashoffset:1;transition:none}
-#flowCurrent{animation:current 2.6s linear infinite}
-@keyframes current{to{stroke-dashoffset:-23}}
+.timeline-flow{position:absolute;left:clamp(2px,2.4vw,30px);top:6px;width:40px;height:100%;overflow:visible}
+#trailPath{opacity:.5}
+.step{position:absolute;width:22px;height:30px;margin:-15px 0 0 -11px;transform-origin:center;pointer-events:none}
+.step i{display:block;width:100%;height:100%;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 40'><g fill='%237a6a4f'><path d='M14 6 C9 6 6 11 6 18 C6 24 8 28 10 31 C12 33.6 16 33.6 18 31 C20 28 22 24 22 18 C22 11 19 6 14 6 Z'/><circle cx='8.6' cy='34' r='2'/><circle cx='13.5' cy='35.6' r='2.3'/><circle cx='18.4' cy='34' r='2'/></g></svg>") center/contain no-repeat;opacity:0;transform:scale(.5);transition:opacity .45s ease,transform .5s cubic-bezier(.2,.85,.3,1.35)}
+.step.in i{opacity:.9;transform:scale(1)}
 .phase{position:relative;padding:0 0 clamp(34px,5vw,58px) clamp(18px,4vw,46px)}
 .phase:last-child{padding-bottom:0}
 .phase-dot{position:absolute;left:calc(clamp(8px,3vw,36px) - clamp(18px,4vw,46px) + 6px);left:-9px;top:6px;width:20px;height:20px;border-radius:50%;background:var(--white);border:3px solid var(--teal);box-shadow:0 0 0 5px rgba(177,83,44,.14);transition:transform .4s,border-color .4s,background .4s}
@@ -156,6 +157,8 @@ h1,h2{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-heig
 .involved::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1440' height='120' viewBox='0 0 1440 120'><path fill='%23ffffff' opacity='.06' d='M0,60 C240,10 480,110 720,60 C960,10 1200,110 1440,60 L1440,120 L0,120 Z'/></svg>") repeat-x bottom;background-size:1440px 120px;animation:drift 18s linear infinite}
 .involved-inner{max-width:680px;margin:0 auto;position:relative;z-index:1}
 .involved-inner .hero-actions{justify-content:center;margin-top:28px}
+.involved-inner strong{color:#fff;font-weight:720}
+.involved-fine{margin:24px auto 0;max-width:62ch;font-size:.85rem;line-height:1.6;color:rgba(255,255,255,.6)}
 
 /* ===== footer ===== */
 .footer{background:var(--ink);color:rgba(255,255,255,.8);padding:40px 0}

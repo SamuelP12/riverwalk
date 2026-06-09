@@ -90,25 +90,53 @@
   }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
   document.querySelectorAll(".reveal, .phase").forEach(function (el) { io.observe(el); });
 
-  /* ---------- timeline flow draw ---------- */
-  var flowDraw = document.getElementById("flowPathDraw");
+  /* ---------- timeline: footsteps appear along the path on scroll ---------- */
   var timeline = document.getElementById("timeline");
-  var flowLen = 0;
-  if (flowDraw) {
-    flowLen = flowDraw.getTotalLength();
-    flowDraw.style.strokeDasharray = flowLen;
-    flowDraw.style.strokeDashoffset = flowLen;
+  var trailPath = document.getElementById("trailPath");
+  var trailFlow = document.querySelector(".timeline-flow");
+  var steps = [];
+
+  function buildSteps() {
+    if (!trailPath || !trailFlow) return;
+    var H = trailFlow.clientHeight, W = trailFlow.clientWidth;
+    if (!H) return;
+    trailFlow.querySelectorAll(".step").forEach(function (s) { s.remove(); });
+    steps = [];
+    var len = trailPath.getTotalLength();
+    var N = Math.max(7, Math.round(H / 64)); // ~one step every 64px
+    for (var i = 0; i < N; i++) {
+      var f = (i + 0.5) / N;
+      var l = len * f;
+      var p = trailPath.getPointAtLength(l);
+      var p2 = trailPath.getPointAtLength(Math.min(len, l + 1));
+      var x = (p.x / 40) * W, y = (p.y / 1000) * H;
+      var x2 = (p2.x / 40) * W, y2 = (p2.y / 1000) * H;
+      var ang = Math.atan2(y2 - y, x2 - x) * 180 / Math.PI; // travel direction
+      var side = i % 2 ? 1 : -1;                              // alternate feet
+      var perp = (ang + 90) * Math.PI / 180, off = 7;
+      var el = document.createElement("div");
+      el.className = "step";
+      el.style.left = (x + Math.cos(perp) * off * side) + "px";
+      el.style.top = (y + Math.sin(perp) * off * side) + "px";
+      el.style.transform = "rotate(" + (ang - 90) + "deg)" + (side < 0 ? " scaleX(-1)" : "");
+      el.innerHTML = "<i></i>";
+      trailFlow.appendChild(el);
+      steps.push({ el: el, frac: f });
+    }
+    if (reduceMotion) steps.forEach(function (s) { s.el.classList.add("in"); });
   }
-  function drawFlow() {
-    if (!flowDraw || !timeline || reduceMotion) return;
-    var r = timeline.getBoundingClientRect();
-    var vh = window.innerHeight;
-    var start = vh * 0.8, end = vh * 0.2;
+
+  function updateSteps() {
+    if (!steps.length || !timeline || reduceMotion) return;
+    var r = timeline.getBoundingClientRect(), vh = window.innerHeight;
+    var start = vh * 0.82, end = vh * 0.2;
     var prog = (start - r.top) / (r.height + (start - end));
     prog = Math.max(0, Math.min(1, prog));
-    flowDraw.style.strokeDashoffset = flowLen * (1 - prog);
+    for (var i = 0; i < steps.length; i++) {
+      steps[i].el.classList.toggle("in", prog + 0.0001 >= steps[i].frac);
+    }
   }
-  if (reduceMotion && flowDraw) flowDraw.style.strokeDashoffset = 0;
+  function drawFlow() { updateSteps(); } // called from onScroll
 
   /* ---------- YouTube lazy embed ---------- */
   var videoEmbed = document.getElementById("videoEmbed");
@@ -118,7 +146,7 @@
       var id = videoEmbed.getAttribute("data-youtube");
       var ifr = document.createElement("iframe");
       ifr.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
-      ifr.title = "Methow Valley Riverwalk film";
+      ifr.title = "Winthrop Riverwalk film";
       ifr.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
       ifr.allowFullscreen = true;
       videoEmbed.innerHTML = "";
@@ -212,7 +240,7 @@
     });
   }
 
-  fetch("data/updates.json?v=1")
+  fetch("data/updates.json?v=2")
     .then(function (r) { if (!r.ok) throw new Error("fetch failed"); return r.json(); })
     .then(function (data) {
       var list = (data && data.updates) || [];
@@ -255,15 +283,17 @@
   function countUp(el) {
     var raw = el.getAttribute("data-count");
     var target = parseFloat(raw);
-    var dec = raw.indexOf(".") > -1 ? 1 : 0;
+    var dotI = raw.indexOf(".");
+    var dec = dotI > -1 ? raw.length - dotI - 1 : 0;
+    var prefix = el.getAttribute("data-prefix") || "";
     var suffix = el.getAttribute("data-suffix") || "";
-    if (reduceMotion) { el.textContent = target.toFixed(dec) + suffix; return; }
+    if (reduceMotion) { el.textContent = prefix + target.toFixed(dec) + suffix; return; }
     var dur = 1500, start = null;
     function step(t) {
       if (start === null) start = t;
       var p = Math.min(1, (t - start) / dur);
       var e = 1 - Math.pow(1 - p, 3);
-      el.textContent = (target * e).toFixed(dec) + suffix;
+      el.textContent = prefix + (target * e).toFixed(dec) + suffix;
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
@@ -311,12 +341,13 @@
   }
 
   // initial paint
+  buildSteps();
   onScroll();
 
   var resizeT;
   window.addEventListener("resize", function () {
     clearTimeout(resizeT);
-    resizeT = setTimeout(function () { onScroll(); }, 160);
+    resizeT = setTimeout(function () { buildSteps(); onScroll(); }, 160);
   });
-  window.addEventListener("load", onScroll);
+  window.addEventListener("load", function () { buildSteps(); onScroll(); });
 })();
