@@ -31,7 +31,9 @@
   function onScroll(scrollY) {
     var y = scrollY != null ? scrollY : window.scrollY;
     var max = document.documentElement.scrollHeight - window.innerHeight;
-    if (progressBar) progressBar.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
+    var prog = max > 0 ? y / max : 0;
+    if (progressBar) progressBar.style.width = prog * 100 + "%";
+    updateRail(prog);
 
     // nav
     if (nav) {
@@ -53,6 +55,57 @@
   if (lenis) lenis.on("scroll", function (e) { onScroll(e.scroll); });
   else window.addEventListener("scroll", function () { onScroll(); }, { passive: true });
   nav && nav.classList.add("at-top");
+
+  /* ---------- global river rail: draw, floating drop, station dots ---------- */
+  var railSvg = document.getElementById("railSvg");
+  var railDraw = document.getElementById("railDraw");
+  var railMarker = document.getElementById("railMarker");
+  var railStationsEl = document.getElementById("railStations");
+  var railLen = 0, stations = [];
+
+  function svgPointToPx(pt) {
+    // viewBox is 40 x 1000, stretched (preserveAspectRatio=none) to the rail's box
+    var w = railSvg.clientWidth, h = railSvg.clientHeight;
+    return { x: (pt.x / 40) * w, y: (pt.y / 1000) * h };
+  }
+
+  function buildStations() {
+    if (!railStationsEl || !railDraw) return;
+    railStationsEl.innerHTML = "";
+    stations = [];
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var secs = document.querySelectorAll("section[id]");
+    secs.forEach(function (sec) {
+      var top = sec.getBoundingClientRect().top + window.scrollY;
+      var frac = max > 0 ? Math.max(0, Math.min(1, top / max)) : 0;
+      var pt = svgPointToPx(railDraw.getPointAtLength(railLen * frac));
+      var dot = document.createElement("div");
+      dot.className = "rail-station";
+      dot.style.left = pt.x + "px";
+      dot.style.top = pt.y + "px";
+      railStationsEl.appendChild(dot);
+      stations.push({ el: dot, frac: frac });
+    });
+  }
+
+  function setupRail() {
+    if (!railDraw || !railSvg) return;
+    if (railSvg.clientHeight === 0) return; // hidden (small screens)
+    railLen = railDraw.getTotalLength();
+    railDraw.style.strokeDasharray = railLen;
+    railDraw.style.strokeDashoffset = railLen;
+    buildStations();
+  }
+
+  function updateRail(prog) {
+    if (!railDraw || !railLen || railSvg.clientHeight === 0) return;
+    railDraw.style.strokeDashoffset = railLen * (1 - prog);
+    var pt = svgPointToPx(railDraw.getPointAtLength(railLen * prog));
+    if (railMarker) { railMarker.style.left = pt.x + "px"; railMarker.style.top = pt.y + "px"; }
+    for (var i = 0; i < stations.length; i++) {
+      stations[i].el.classList.toggle("on", prog + 0.001 >= stations[i].frac);
+    }
+  }
 
   /* ---------- reveal on scroll ---------- */
   var io = new IntersectionObserver(function (entries) {
@@ -195,6 +248,8 @@
       if (!list.length) throw new Error("no updates");
       renderFeature(list[0]);
       renderArchive(list);
+      // content changed page height — recompute rail stations/length
+      requestAnimationFrame(function () { setupRail(); onScroll(); });
     })
     .catch(function () {
       if (featureCard) {
@@ -209,5 +264,13 @@
     });
 
   // initial paint
+  setupRail();
   onScroll();
+
+  var resizeT;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(function () { setupRail(); onScroll(); }, 160);
+  });
+  window.addEventListener("load", function () { setupRail(); onScroll(); });
 })();

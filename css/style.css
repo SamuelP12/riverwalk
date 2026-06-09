@@ -36,6 +36,17 @@ h1,h2,h3{line-height:1.05;letter-spacing:-.02em;font-weight:760}
 .progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:120;background:transparent}
 .progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--river));box-shadow:0 0 12px rgba(63,182,182,.6)}
 
+/* ===== global river progress rail ===== */
+.river-rail{position:fixed;top:0;left:16px;width:46px;height:100vh;z-index:60;pointer-events:none;display:none}
+.river-rail svg{width:100%;height:100%;overflow:visible}
+#railDraw{filter:drop-shadow(0 0 6px rgba(63,182,182,.5))}
+.rail-marker{position:absolute;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#eafdff,#3fb6b6 55%,#2b7fb0);box-shadow:0 0 0 5px rgba(63,182,182,.16),0 0 18px rgba(63,182,182,.65);will-change:left,top}
+.rail-marker::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(63,182,182,.45);animation:ripple 2.6s ease-out infinite}
+@keyframes ripple{0%{transform:scale(.55);opacity:.85}100%{transform:scale(1.9);opacity:0}}
+.rail-station{position:absolute;left:0;top:0;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:#fff;border:2.5px solid #b6dbe0;transition:border-color .45s ease,background .45s ease,transform .45s ease,box-shadow .45s ease}
+.rail-station.on{border-color:var(--river);background:var(--river);transform:scale(1.18);box-shadow:0 0 0 4px rgba(43,127,176,.14)}
+@media(min-width:1180px){.river-rail{display:block}}
+
 /* ===== nav ===== */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:100;

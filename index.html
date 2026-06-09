@@ -7,11 +7,27 @@
   <meta name="description" content="Following the Methow Valley Riverwalk — a community project reconnecting the valley to its river. Weekly progress, the plan, and how to get involved." />
   <link rel="preconnect" href="https://rsms.me/" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-  <link rel="stylesheet" href="css/style.css?v=1" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
 </head>
 <body>
   <!-- scroll progress -->
   <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <!-- global river progress rail -->
+  <div class="river-rail" id="riverRail" aria-hidden="true">
+    <svg id="railSvg" viewBox="0 0 40 1000" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="railGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7fd3d6"/>
+          <stop offset="1" stop-color="#2b7fb0"/>
+        </linearGradient>
+      </defs>
+      <path id="railBg" d="M20,2 C6,90 34,180 20,270 C6,360 34,450 20,540 C6,630 34,720 20,810 C6,900 30,960 20,1000" fill="none" stroke="#cfe6e8" stroke-width="3" vector-effect="non-scaling-stroke"/>
+      <path id="railDraw" d="M20,2 C6,90 34,180 20,270 C6,360 34,450 20,540 C6,630 34,720 20,810 C6,900 30,960 20,1000" fill="none" stroke="url(#railGrad)" stroke-width="3.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    </svg>
+    <div class="rail-stations" id="railStations"></div>
+    <div class="rail-marker" id="railMarker"></div>
+  </div>
 
   <!-- nav -->
   <header class="nav" id="nav">
@@ -84,7 +100,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">The plan</span>
-        <h2>From riverbank to ribbon of trail</h2>
+        <h2>From river bank to trail</h2>
         <p class="section-sub">Four phases carry the Riverwalk from first survey stakes to a finished, year-round path. Scroll to follow the river downstream.</p>
       </div>
 
@@ -203,6 +219,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=1"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>
