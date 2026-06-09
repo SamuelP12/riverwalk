@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Methow Valley Riverwalk</title>
+  <meta name="description" content="Following the Methow Valley Riverwalk — a community project reconnecting the valley to its river. Weekly progress, the plan, and how to get involved." />
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+  <!-- scroll progress -->
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <!-- nav -->
+  <header class="nav" id="nav">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M2 20c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 6 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M2 26c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 6 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+      </svg>
+      <span>Riverwalk</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#this-week">This Week</a>
+      <a href="#plan">The Plan</a>
+      <a href="#video">Watch</a>
+      <a href="#archive">Updates</a>
+      <a href="#involved" class="nav-cta">Get Involved</a>
+    </nav>
+  </header>
+
+  <!-- hero -->
+  <section class="hero" id="top">
+    <div class="hero-scene" aria-hidden="true">
+      <div class="layer sky"></div>
+      <div class="layer hills hills-far" data-depth="0.12"></div>
+      <div class="layer hills hills-mid" data-depth="0.26"></div>
+      <div class="layer hills hills-near" data-depth="0.42"></div>
+      <div class="layer river" data-depth="0.06">
+        <svg class="river-svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="riverGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#7fd3d6"/>
+              <stop offset="1" stop-color="#2b7fb0"/>
+            </linearGradient>
+          </defs>
+          <path class="wave wave1" fill="url(#riverGrad)" d="M0,160 C240,90 480,230 720,160 C960,90 1200,230 1440,160 L1440,320 L0,320 Z"/>
+          <path class="wave wave2" fill="#bfeaf0" opacity=".35" d="M0,180 C240,120 480,250 720,180 C960,120 1200,250 1440,180 L1440,320 L0,320 Z"/>
+        </svg>
+        <div class="shimmer"></div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <p class="kicker reveal">Twisp · Winthrop · Methow Valley, WA</p>
+      <h1 class="reveal">The Methow Valley<br><span class="accent">Riverwalk</span></h1>
+      <p class="lede reveal">A community-built path reconnecting our towns to the river that made them — followed here, step by step, week by week.</p>
+      <div class="hero-actions reveal">
+        <a href="#this-week" class="btn btn-primary">See this week</a>
+        <a href="#plan" class="btn btn-ghost">View the plan</a>
+      </div>
+    </div>
+    <a href="#this-week" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+  </section>
+
+  <!-- this week -->
+  <section class="section this-week" id="this-week">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Update of the week</span>
+        <h2>Where we are right now</h2>
+      </div>
+      <article class="feature-card reveal" id="featureCard" aria-live="polite">
+        <!-- populated by js/main.js from data/updates.json -->
+        <div class="feature-skeleton">Loading the latest update…</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- the plan -->
+  <section class="section plan" id="plan">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">The plan</span>
+        <h2>From riverbank to ribbon of trail</h2>
+        <p class="section-sub">Four phases carry the Riverwalk from first survey stakes to a finished, year-round path. Scroll to follow the river downstream.</p>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <svg class="timeline-flow" viewBox="0 0 24 1000" preserveAspectRatio="none" aria-hidden="true">
+          <path id="flowPath" d="M12,0 C4,160 20,300 12,460 C4,620 20,760 12,1000" fill="none" stroke="#9fe0e4" stroke-width="3"/>
+          <path id="flowPathDraw" d="M12,0 C4,160 20,300 12,460 C4,620 20,760 12,1000" fill="none" stroke="#2b7fb0" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+
+        <div class="phase reveal" data-phase="01">
+          <div class="phase-dot"></div>
+          <div class="phase-body">
+            <span class="phase-num">Phase 01 · Underway</span>
+            <h3>Survey &amp; design</h3>
+            <p>Walking the corridor, mapping the floodplain, and listening to neighbors. Locating the path where the river can rise without taking it back.</p>
+          </div>
+        </div>
+
+        <div class="phase reveal" data-phase="02">
+          <div class="phase-dot"></div>
+          <div class="phase-body">
+            <span class="phase-num">Phase 02 · Next</span>
+            <h3>Grading &amp; bridges</h3>
+            <p>Shaping the trail bed, setting boardwalks over the wet reaches, and dropping in the footbridges that stitch the two banks together.</p>
+          </div>
+        </div>
+
+        <div class="phase reveal" data-phase="03">
+          <div class="phase-dot"></div>
+          <div class="phase-body">
+            <span class="phase-num">Phase 03</span>
+            <h3>Surface &amp; plantings</h3>
+            <p>A firm all-season surface goes down; native willow, dogwood, and bunchgrass go in to hold the banks and bring back the shade.</p>
+          </div>
+        </div>
+
+        <div class="phase reveal" data-phase="04">
+          <div class="phase-dot"></div>
+          <div class="phase-body">
+            <span class="phase-num">Phase 04</span>
+            <h3>Open the Riverwalk</h3>
+            <p>Benches, signage, and trailheads at both ends. A continuous walk along the water, free and open to everyone, every season.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- video -->
+  <section class="section video" id="video">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Watch</span>
+        <h2>The Riverwalk, in motion</h2>
+        <p class="section-sub">A short film about the project — the people, the river, and the path taking shape between them.</p>
+      </div>
+      <div class="video-frame reveal">
+        <div class="video-embed" id="videoEmbed" data-youtube="dQw4w9WgXcQ">
+          <button class="video-play" id="videoPlay" aria-label="Play video">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+            <span>Play the film</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- archive -->
+  <section class="section archive" id="archive">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Weekly updates</span>
+        <h2>Follow every step</h2>
+        <p class="section-sub">Each week we post what changed on the ground. Tap any week to read it.</p>
+      </div>
+      <div class="archive-grid" id="archiveGrid">
+        <!-- populated by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- get involved -->
+  <section class="section involved" id="involved">
+    <div class="wrap involved-inner">
+      <div class="reveal">
+        <span class="eyebrow light">Get involved</span>
+        <h2>The Riverwalk is built by the valley</h2>
+        <p class="section-sub light">Volunteer on a work day, support the project, or just come walk the finished stretches. There's a place for you on the path.</p>
+        <div class="hero-actions">
+          <a href="mailto:hello@methowriverwalk.org" class="btn btn-primary">Reach out</a>
+          <a href="#top" class="btn btn-ghost light">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M2 20c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 6 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <span>Methow Valley Riverwalk</span>
+      </div>
+      <p class="footer-note">A community project · Methow Valley, Washington · Updated weekly</p>
+    </div>
+  </footer>
+
+  <!-- update modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" data-close aria-label="Close">&times;</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="js/main.js?v=1"></script>
+</body>
+</html>

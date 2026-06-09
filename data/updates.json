@@ -1,0 +1,68 @@
+{
+  "_comment": "Newest update FIRST. The first item becomes 'This Week'. To post a new week, copy one block to the top and edit it. 'image' is optional (a filename in images/ or a full URL); leave it as an empty string to use the gradient placeholder.",
+  "updates": [
+    {
+      "week": "Week 7",
+      "date": "June 6, 2026",
+      "title": "Survey stakes reach the north meadow",
+      "summary": "The survey crew finished flagging the corridor through the north meadow this week, tying our line into the existing town path at the footbridge.",
+      "body": "It was a big week on the ground. The survey crew worked from the old mill site north through the meadow, setting flags every fifty feet and tying our centerline into the existing town path at the river footbridge. That connection matters — it means a walker will eventually be able to start downtown and follow the water without ever leaving the trail.\n\nWe also met with two streamside landowners who've offered easements along the cottonwood reach. Their generosity shaves weeks off the permitting timeline and keeps the path close to the water where people want it.\n\nNext week: the floodplain mapping team arrives to mark the high-water line so we can set the path where the river can rise without taking it back.",
+      "image": "",
+      "tags": ["Survey", "Easements", "Community"]
+    },
+    {
+      "week": "Week 6",
+      "date": "May 30, 2026",
+      "title": "Floodplain study kicks off",
+      "summary": "Hydrologists walked the lower reach to model where spring runoff spreads, so the trail bed sits high and dry come freshet.",
+      "body": "Before a single shovel goes in the ground, we need to know where the river goes when it's angry. This week a pair of hydrologists walked the lower reach with us, reading the old flood lines on the cottonwoods and dropping survey points to model where spring runoff spreads.\n\nThe early read is encouraging: a bench above the south bank stays dry in all but the biggest years, and that's exactly where the design wants the path to run. We'll have the full model back in two weeks.",
+      "image": "",
+      "tags": ["Hydrology", "Design"]
+    },
+    {
+      "week": "Week 5",
+      "date": "May 23, 2026",
+      "title": "Community walk draws a crowd",
+      "summary": "Forty neighbors joined us to walk the proposed route and share what they hope to see along the Riverwalk.",
+      "body": "Forty people showed up on a bright Saturday to walk the proposed route with us, end to end. We stopped at every pinch point and crossing, and folks told us what they hoped for: benches in the shade, a safe way across the highway, and access for wheelchairs and strollers the whole length.\n\nEvery comment is going into the design notebook. This path belongs to the valley, and the valley showed up.",
+      "image": "",
+      "tags": ["Community", "Outreach"]
+    },
+    {
+      "week": "Week 4",
+      "date": "May 16, 2026",
+      "title": "Grant funding confirmed",
+      "summary": "A state recreation grant cleared its final review, locking in the money for the first construction phase.",
+      "body": "The news we've been waiting on: the state recreation grant cleared its final review board this week. Combined with local donations, that locks in the funding for Phase 2 — grading and the first footbridges.\n\nHuge thanks to everyone who wrote letters of support. Reviewers specifically noted the community turnout. You made this happen.",
+      "image": "",
+      "tags": ["Funding", "Milestone"]
+    },
+    {
+      "week": "Week 3",
+      "date": "May 9, 2026",
+      "title": "Mapping the old mill reach",
+      "summary": "We documented the historic mill foundations so the trail can tell the river's working history as it passes through.",
+      "body": "The stretch past the old mill is the most storied on the whole corridor. This week we documented the surviving foundations and the log-drive scars on the bank, working with the historical society so the finished trail can interpret the river's working past right where it happened.\n\nThe plan is a short spur and a couple of signs here — history you can walk up to.",
+      "image": "",
+      "tags": ["History", "Design"]
+    },
+    {
+      "week": "Week 2",
+      "date": "May 2, 2026",
+      "title": "Corridor cleared of debris",
+      "summary": "Volunteers hauled out decades of brush and old fencing from the proposed route on the first community work day.",
+      "body": "Our first community work day, and what a turnout. Volunteers with loppers and trucks cleared decades of brush, downed wire, and old fence line from the proposed corridor. By afternoon you could actually walk the route and picture the path.\n\nWe filled a thirty-yard dumpster and found, of all things, a 1950s license plate. It's going on the wall at the project office.",
+      "image": "",
+      "tags": ["Work Day", "Volunteers"]
+    },
+    {
+      "week": "Week 1",
+      "date": "April 25, 2026",
+      "title": "The Riverwalk begins",
+      "summary": "After years of dreaming, the Methow Valley Riverwalk officially kicks off with a signed agreement and a route on the map.",
+      "body": "It's official. After years of conversations around kitchen tables and town meetings, the Methow Valley Riverwalk is underway. This week we signed the cooperative agreement between the towns and the land trust, and put the first version of the route on the map.\n\nThe vision is simple and stubborn: a continuous, free, all-season path along the river, knitting our towns to the water that made them. We'll post here every week so you can follow every step. Welcome to the walk.",
+      "image": "",
+      "tags": ["Kickoff", "Milestone"]
+    }
+  ]
+}
