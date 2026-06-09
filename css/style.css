@@ -36,17 +36,6 @@ h1,h2,h3{line-height:1.05;letter-spacing:-.02em;font-weight:760}
 .progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:120;background:transparent}
 .progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--river));box-shadow:0 0 12px rgba(63,182,182,.6)}
 
-/* ===== global river progress rail ===== */
-.river-rail{position:fixed;top:0;left:16px;width:46px;height:100vh;z-index:60;pointer-events:none;display:none}
-.river-rail svg{width:100%;height:100%;overflow:visible}
-#railDraw{filter:drop-shadow(0 0 6px rgba(63,182,182,.5))}
-.rail-marker{position:absolute;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#eafdff,#3fb6b6 55%,#2b7fb0);box-shadow:0 0 0 5px rgba(63,182,182,.16),0 0 18px rgba(63,182,182,.65);will-change:left,top}
-.rail-marker::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(63,182,182,.45);animation:ripple 2.6s ease-out infinite}
-@keyframes ripple{0%{transform:scale(.55);opacity:.85}100%{transform:scale(1.9);opacity:0}}
-.rail-station{position:absolute;left:0;top:0;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:#fff;border:2.5px solid #b6dbe0;transition:border-color .45s ease,background .45s ease,transform .45s ease,box-shadow .45s ease}
-.rail-station.on{border-color:var(--river);background:var(--river);transform:scale(1.18);box-shadow:0 0 0 4px rgba(43,127,176,.14)}
-@media(min-width:1180px){.river-rail{display:block}}
-
 /* ===== nav ===== */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -88,7 +77,8 @@ h1,h2,h3{line-height:1.05;letter-spacing:-.02em;font-weight:760}
 .hero-content{position:relative;z-index:2;max-width:var(--maxw);width:100%;margin:0 auto;padding:0 clamp(20px,5vw,46px)}
 .kicker{font-size:.84rem;letter-spacing:.22em;text-transform:uppercase;font-weight:620;color:rgba(255,255,255,.9);margin-bottom:16px;text-shadow:0 2px 14px rgba(16,48,59,.35)}
 .hero h1{font-size:clamp(3rem,8.5vw,6.6rem);font-weight:820;text-shadow:0 6px 40px rgba(16,48,59,.35)}
-.hero h1 .accent{color:#eafcff;position:relative}
+.hero h1 .accent{position:relative;background:linear-gradient(100deg,#eafcff 18%,#bff3f7 38%,#ffffff 50%,#bff3f7 62%,#eafcff 82%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 5px 20px rgba(16,48,59,.32));animation:flowtext 7s linear infinite}
+@keyframes flowtext{to{background-position:-220% center}}
 .hero h1 .accent::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.1em;background:linear-gradient(90deg,var(--aqua),transparent);border-radius:4px}
 .lede{font-size:clamp(1.05rem,2vw,1.4rem);max-width:34ch;margin:22px 0 30px;color:rgba(255,255,255,.95);text-shadow:0 2px 18px rgba(16,48,59,.35);font-weight:420}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
@@ -205,6 +195,33 @@ h1,h2,h3{line-height:1.05;letter-spacing:-.02em;font-weight:760}
 /* ===== reveal ===== */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
+
+/* ===== by the numbers ===== */
+.stats{background:linear-gradient(155deg,#0f2f39,#143a45 55%,#11505f);color:#fff;padding:clamp(52px,7vw,90px) 0;position:relative;overflow:hidden}
+.stats::before{content:"";position:absolute;left:-50%;right:-50%;bottom:-10px;height:120px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1440' height='120' viewBox='0 0 1440 120'><path fill='%23ffffff' opacity='.05' d='M0,60 C240,10 480,110 720,60 C960,10 1200,110 1440,60 L1440,120 L0,120 Z'/></svg>") repeat-x;background-size:1440px 120px;animation:drift 20s linear infinite}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;position:relative;z-index:1}
+.stat .num{font-size:clamp(2.3rem,5vw,3.5rem);font-weight:820;letter-spacing:-.03em;line-height:1;background:linear-gradient(180deg,#eafdff,#7fd3d6);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.stat .label{margin-top:10px;font-size:.94rem;color:rgba(255,255,255,.74);letter-spacing:.01em}
+@media(max-width:720px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:34px 18px}}
+
+/* ===== newsletter / signup ===== */
+.newsletter{background:linear-gradient(180deg,#fff,#eef6f1);position:relative;overflow:hidden;text-align:center}
+.wave-top{position:absolute;top:0;left:0;width:100%;height:72px;overflow:hidden;line-height:0;pointer-events:none}
+.wave-top svg{position:absolute;bottom:0;left:0;width:200%;height:100%}
+.wave-top path{animation:flowx 22s linear infinite}
+@keyframes flowx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.newsletter-inner{max-width:640px;margin:0 auto;padding-top:20px}
+.newsletter-inner .section-sub{margin-left:auto;margin-right:auto}
+.signup-form{display:flex;gap:10px;justify-content:center;margin-top:28px;flex-wrap:wrap;transition:opacity .45s ease,transform .45s ease}
+.signup-form.done{opacity:0;transform:translateY(-8px);pointer-events:none}
+.signup-form input{flex:1 1 260px;max-width:360px;padding:14px 20px;border-radius:999px;border:1.5px solid rgba(16,48,59,.16);font:inherit;font-size:1rem;color:var(--ink);background:#fff;transition:border-color .25s,box-shadow .25s}
+.signup-form input::placeholder{color:rgba(16,48,59,.4)}
+.signup-form input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(63,182,182,.16)}
+.signup-form input.invalid{border-color:#e2773f;box-shadow:0 0 0 4px rgba(226,119,63,.16)}
+.signup-form .btn{flex:0 0 auto}
+.signup-msg{margin-top:18px;min-height:1.3em;font-weight:580;color:var(--river-deep);opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease}
+.signup-msg.show{opacity:1;transform:none}
+.signup-msg.err{color:#c8551f}
 
 /* ===== responsive ===== */
 @media(max-width:860px){

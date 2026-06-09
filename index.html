@@ -7,27 +7,11 @@
   <meta name="description" content="Following the Methow Valley Riverwalk — a community project reconnecting the valley to its river. Weekly progress, the plan, and how to get involved." />
   <link rel="preconnect" href="https://rsms.me/" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
 </head>
 <body>
   <!-- scroll progress -->
   <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
-
-  <!-- global river progress rail -->
-  <div class="river-rail" id="riverRail" aria-hidden="true">
-    <svg id="railSvg" viewBox="0 0 40 1000" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="railGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#7fd3d6"/>
-          <stop offset="1" stop-color="#2b7fb0"/>
-        </linearGradient>
-      </defs>
-      <path id="railBg" d="M20,2 C6,90 34,180 20,270 C6,360 34,450 20,540 C6,630 34,720 20,810 C6,900 30,960 20,1000" fill="none" stroke="#cfe6e8" stroke-width="3" vector-effect="non-scaling-stroke"/>
-      <path id="railDraw" d="M20,2 C6,90 34,180 20,270 C6,360 34,450 20,540 C6,630 34,720 20,810 C6,900 30,960 20,1000" fill="none" stroke="url(#railGrad)" stroke-width="3.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
-    </svg>
-    <div class="rail-stations" id="railStations"></div>
-    <div class="rail-marker" id="railMarker"></div>
-  </div>
 
   <!-- nav -->
   <header class="nav" id="nav">
@@ -79,6 +63,16 @@
       </div>
     </div>
     <a href="#this-week" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+  </section>
+
+  <!-- by the numbers -->
+  <section class="stats" aria-label="Project by the numbers">
+    <div class="wrap stats-grid">
+      <div class="stat reveal"><div class="num" data-count="2.4" data-suffix=" mi">0</div><div class="label">Miles of planned path</div></div>
+      <div class="stat reveal"><div class="num" data-count="4">0</div><div class="label">Phases from survey to ribbon</div></div>
+      <div class="stat reveal"><div class="num" data-count="7">0</div><div class="label">Weeks documented so far</div></div>
+      <div class="stat reveal"><div class="num" data-count="120" data-suffix="+">0</div><div class="label">Volunteer hours given</div></div>
+    </div>
   </section>
 
   <!-- this week -->
@@ -182,6 +176,23 @@
     </div>
   </section>
 
+  <!-- email signup -->
+  <section class="section newsletter" id="signup">
+    <div class="wave-top" aria-hidden="true">
+      <svg viewBox="0 0 2880 70" preserveAspectRatio="none"><path d="M0,40 C240,5 480,75 720,40 C960,5 1200,75 1440,40 C1680,5 1920,75 2160,40 C2400,5 2640,75 2880,40 L2880,70 L0,70 Z" fill="#e9f2ee"/></svg>
+    </div>
+    <div class="wrap newsletter-inner reveal">
+      <span class="eyebrow">Stay in the loop</span>
+      <h2>The update of the week, in your inbox</h2>
+      <p class="section-sub">One short email each week — what changed on the river, fresh photos, and upcoming work-day dates. No spam, unsubscribe anytime.</p>
+      <form class="signup-form" id="signupForm" data-endpoint="" novalidate>
+        <input type="email" id="signupEmail" name="email" placeholder="you@email.com" autocomplete="email" aria-label="Email address" required />
+        <button type="submit" class="btn btn-primary">Sign me up</button>
+      </form>
+      <p class="signup-msg" id="signupMsg" role="status"></p>
+    </div>
+  </section>
+
   <!-- get involved -->
   <section class="section involved" id="involved">
     <div class="wrap involved-inner">
@@ -219,6 +230,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>

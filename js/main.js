@@ -33,7 +33,6 @@
     var max = document.documentElement.scrollHeight - window.innerHeight;
     var prog = max > 0 ? y / max : 0;
     if (progressBar) progressBar.style.width = prog * 100 + "%";
-    updateRail(prog);
 
     // nav
     if (nav) {
@@ -42,70 +41,37 @@
       nav.classList.toggle("at-top", y < heroH);
     }
 
-    // hero parallax
-    if (!reduceMotion && hero && y < hero.offsetHeight) {
-      layers.forEach(function (l) {
-        var d = parseFloat(l.getAttribute("data-depth")) || 0;
-        l.style.transform = "translate3d(0," + (y * d).toFixed(1) + "px,0)";
-      });
-    }
+    // hero parallax (scroll + cursor)
+    lastY = y;
+    applyParallax();
 
     drawFlow();
+  }
+
+  /* ---------- hero parallax: scroll + cursor drift ---------- */
+  var lastY = 0, mouse = { x: 0, y: 0 };
+  function applyParallax() {
+    if (reduceMotion || !hero || lastY >= hero.offsetHeight) return;
+    layers.forEach(function (l) {
+      var d = parseFloat(l.getAttribute("data-depth")) || 0;
+      var mx = mouse.x * d * 30;
+      var my = mouse.y * d * 20;
+      l.style.transform = "translate3d(" + mx.toFixed(1) + "px," + (lastY * d + my).toFixed(1) + "px,0)";
+    });
+  }
+  if (!reduceMotion && hero) {
+    hero.addEventListener("pointermove", function (e) {
+      mouse.x = e.clientX / window.innerWidth - 0.5;
+      mouse.y = e.clientY / window.innerHeight - 0.5;
+      applyParallax();
+    });
+    hero.addEventListener("pointerleave", function () {
+      mouse.x = 0; mouse.y = 0; applyParallax();
+    });
   }
   if (lenis) lenis.on("scroll", function (e) { onScroll(e.scroll); });
   else window.addEventListener("scroll", function () { onScroll(); }, { passive: true });
   nav && nav.classList.add("at-top");
-
-  /* ---------- global river rail: draw, floating drop, station dots ---------- */
-  var railSvg = document.getElementById("railSvg");
-  var railDraw = document.getElementById("railDraw");
-  var railMarker = document.getElementById("railMarker");
-  var railStationsEl = document.getElementById("railStations");
-  var railLen = 0, stations = [];
-
-  function svgPointToPx(pt) {
-    // viewBox is 40 x 1000, stretched (preserveAspectRatio=none) to the rail's box
-    var w = railSvg.clientWidth, h = railSvg.clientHeight;
-    return { x: (pt.x / 40) * w, y: (pt.y / 1000) * h };
-  }
-
-  function buildStations() {
-    if (!railStationsEl || !railDraw) return;
-    railStationsEl.innerHTML = "";
-    stations = [];
-    var max = document.documentElement.scrollHeight - window.innerHeight;
-    var secs = document.querySelectorAll("section[id]");
-    secs.forEach(function (sec) {
-      var top = sec.getBoundingClientRect().top + window.scrollY;
-      var frac = max > 0 ? Math.max(0, Math.min(1, top / max)) : 0;
-      var pt = svgPointToPx(railDraw.getPointAtLength(railLen * frac));
-      var dot = document.createElement("div");
-      dot.className = "rail-station";
-      dot.style.left = pt.x + "px";
-      dot.style.top = pt.y + "px";
-      railStationsEl.appendChild(dot);
-      stations.push({ el: dot, frac: frac });
-    });
-  }
-
-  function setupRail() {
-    if (!railDraw || !railSvg) return;
-    if (railSvg.clientHeight === 0) return; // hidden (small screens)
-    railLen = railDraw.getTotalLength();
-    railDraw.style.strokeDasharray = railLen;
-    railDraw.style.strokeDashoffset = railLen;
-    buildStations();
-  }
-
-  function updateRail(prog) {
-    if (!railDraw || !railLen || railSvg.clientHeight === 0) return;
-    railDraw.style.strokeDashoffset = railLen * (1 - prog);
-    var pt = svgPointToPx(railDraw.getPointAtLength(railLen * prog));
-    if (railMarker) { railMarker.style.left = pt.x + "px"; railMarker.style.top = pt.y + "px"; }
-    for (var i = 0; i < stations.length; i++) {
-      stations[i].el.classList.toggle("on", prog + 0.001 >= stations[i].frac);
-    }
-  }
 
   /* ---------- reveal on scroll ---------- */
   var io = new IntersectionObserver(function (entries) {
@@ -248,8 +214,7 @@
       if (!list.length) throw new Error("no updates");
       renderFeature(list[0]);
       renderArchive(list);
-      // content changed page height — recompute rail stations/length
-      requestAnimationFrame(function () { setupRail(); onScroll(); });
+      requestAnimationFrame(function () { tiltCards(); onScroll(); });
     })
     .catch(function () {
       if (featureCard) {
@@ -263,14 +228,90 @@
       }
     });
 
+  /* ---------- subtle pointer-tilt on cards (hover devices only) ---------- */
+  function tiltCards() {
+    if (reduceMotion || !window.matchMedia("(hover:hover)").matches) return;
+    document.querySelectorAll(".update-card, .feature-card").forEach(function (c) {
+      if (c.dataset.tilt) return;
+      c.dataset.tilt = "1";
+      c.addEventListener("pointermove", function (e) {
+        var r = c.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        c.style.transform = "perspective(720px) rotateX(" + (-py * 4.5).toFixed(2) +
+          "deg) rotateY(" + (px * 6).toFixed(2) + "deg) translateY(-6px)";
+      });
+      c.addEventListener("pointerleave", function () { c.style.transform = ""; });
+    });
+  }
+  tiltCards();
+
+  /* ---------- count-up stats ---------- */
+  function countUp(el) {
+    var raw = el.getAttribute("data-count");
+    var target = parseFloat(raw);
+    var dec = raw.indexOf(".") > -1 ? 1 : 0;
+    var suffix = el.getAttribute("data-suffix") || "";
+    if (reduceMotion) { el.textContent = target.toFixed(dec) + suffix; return; }
+    var dur = 1500, start = null;
+    function step(t) {
+      if (start === null) start = t;
+      var p = Math.min(1, (t - start) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * e).toFixed(dec) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var countObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { countUp(en.target); countObs.unobserve(en.target); }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll("[data-count]").forEach(function (el) { countObs.observe(el); });
+
+  /* ---------- email signup ---------- */
+  var form = document.getElementById("signupForm");
+  if (form) {
+    var input = document.getElementById("signupEmail");
+    var msg = document.getElementById("signupMsg");
+    input.addEventListener("input", function () { input.classList.remove("invalid"); });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var val = (input.value || "").trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val)) {
+        input.classList.add("invalid");
+        msg.textContent = "Please enter a valid email address.";
+        msg.className = "signup-msg show err";
+        input.focus();
+        return;
+      }
+      input.classList.remove("invalid");
+      function celebrate() {
+        form.classList.add("done");
+        msg.innerHTML = "🌊 You're on the list — see you on the river.";
+        msg.className = "signup-msg show";
+      }
+      var endpoint = form.getAttribute("data-endpoint");
+      if (endpoint) {
+        fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ email: val })
+        }).then(celebrate).catch(celebrate);
+      } else {
+        celebrate();
+      }
+    });
+  }
+
   // initial paint
-  setupRail();
   onScroll();
 
   var resizeT;
   window.addEventListener("resize", function () {
     clearTimeout(resizeT);
-    resizeT = setTimeout(function () { setupRail(); onScroll(); }, 160);
+    resizeT = setTimeout(function () { onScroll(); }, 160);
   });
-  window.addEventListener("load", function () { setupRail(); onScroll(); });
+  window.addEventListener("load", onScroll);
 })();
