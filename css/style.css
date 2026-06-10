@@ -57,25 +57,20 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-h
 .nav-cta{background:var(--teal);color:#fff!important;padding:9px 16px;border-radius:999px;font-weight:620;transition:transform .2s,background .25s}
 .nav-cta:hover{background:#974327;transform:translateY(-1px)}
 
-/* ===== hero (logo) ===== */
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;text-align:center;overflow:hidden;color:var(--ink);padding:96px 0 0}
-.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;background:linear-gradient(180deg,#faf4e8 0%,#f1e9d6 56%,#e7dcc2 100%)}
-.hero-sun{position:absolute;top:8%;left:50%;width:min(620px,84vw);height:min(620px,84vw);transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(177,83,44,.16),rgba(177,83,44,.05) 46%,transparent 68%);animation:glow 9s ease-in-out infinite}
-@keyframes glow{0%,100%{opacity:.82}50%{opacity:1}}
+/* ===== hero (interactive 3D river trail) ===== */
+.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;color:#fff;background:linear-gradient(180deg,#dfeaf0 0%,#e9eadf 46%,#e7ddc6 100%)}
 @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-80px)}}
-.hero-content{position:relative;z-index:2;flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;max-width:920px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,46px) clamp(16px,3vh,40px);will-change:transform}
-.cover-word{display:block;width:min(620px,84vw);margin:0 auto;filter:drop-shadow(0 10px 22px rgba(51,53,42,.12));animation:float 7s ease-in-out infinite;animation-delay:1s}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.kicker{font-size:.84rem;letter-spacing:.22em;text-transform:uppercase;font-weight:620;color:var(--teal);margin-bottom:16px}
-.lede{font-size:clamp(1.02rem,1.9vw,1.3rem);max-width:44ch;margin:22px auto 28px;color:var(--ink-soft);font-weight:440}
-
-/* simple "walk along a river" scene under the text */
-.riverwalk-scene{position:relative;z-index:1;flex:0 0 auto;width:100%;line-height:0;margin-top:auto}
-.riverwalk-scene svg{display:block;width:100%;height:auto}
-.rw-ripple{animation:rwflow 8s linear infinite}
-.rw-ripple.r2{animation-duration:11s;animation-direction:reverse}
-@keyframes rwflow{from{transform:translateX(0)}to{transform:translateX(-70px)}}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.hero3d{position:absolute;inset:0;z-index:1;cursor:grab}
+.hero3d canvas{display:block}
+.hero3d-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;padding:0 24px}
+.hero3d-title{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,7vw,5.2rem);letter-spacing:.01em;line-height:1.04;color:#fff;text-shadow:0 6px 34px rgba(22,30,24,.5),0 2px 10px rgba(22,30,24,.45)}
+.hero3d-sub{margin-top:16px;font-size:clamp(1rem,2vw,1.32rem);color:rgba(255,255,255,.95);max-width:34ch;text-shadow:0 2px 16px rgba(22,30,24,.55)}
+.hero .scroll-cue{z-index:3;border-color:rgba(255,255,255,.85)}
+.hero .scroll-cue span{background:#fff}
+/* static fallback when WebGL is unavailable */
+.hero.no3d{background:linear-gradient(180deg,#cfe0e4 0%,#dfe4d3 50%,#cdbf9c 100%)}
+.hero.no3d .hero3d{display:none}
+@media(prefers-reduced-motion:reduce){.hero3d{cursor:default}}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;font-weight:620;font-size:.98rem;transition:transform .2s ease,box-shadow .25s ease,background .25s ease;cursor:pointer;border:none}
 .btn-primary{background:var(--white);color:var(--river-deep);box-shadow:var(--shadow)}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 50px -18px rgba(16,48,59,.6)}

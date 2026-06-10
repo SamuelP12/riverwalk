@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&display=swap" />
-  <link rel="stylesheet" href="css/style.css?v=9" />
+  <link rel="stylesheet" href="css/style.css?v=10" />
 </head>
 <body>
   <!-- scroll progress -->
@@ -36,56 +36,12 @@
 
   <!-- hero -->
   <section class="hero" id="top">
-    <div class="hero-bg" aria-hidden="true"><span class="hero-sun"></span></div>
-
-    <div class="hero-content">
-      <img class="cover-word reveal" src="images/logo-word.png?v=1" width="869" height="301" alt="Winthrop Riverwalk" />
-      <p class="lede reveal">A safe, six-foot path along the wild Chewuch and Methow rivers — opening up the heart of downtown Winthrop to people of every age and ability. Free, for everyone. Follow the progress here, week by week.</p>
-      <div class="hero-actions reveal">
-        <a href="#this-week" class="btn btn-primary">See this week</a>
-        <a href="#involved" class="btn btn-ghost light">Support the trail</a>
-      </div>
+    <div class="hero3d" id="hero3d" aria-hidden="true"></div>
+    <div class="hero3d-overlay">
+      <h1 class="hero3d-title reveal">Winthrop Riverwalk</h1>
+      <p class="hero3d-sub reveal">A trail along the river, in the heart of downtown Winthrop. Move your mouse to look around — scroll down to begin.</p>
     </div>
-
-    <div class="riverwalk-scene reveal" aria-hidden="true">
-      <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax meet">
-        <!-- rolling hills -->
-        <path fill="#7c8466" opacity=".5" d="M0,162 C150,130 320,158 470,140 C640,118 800,154 970,134 C1090,120 1160,148 1200,140 L1200,300 L0,300 Z"/>
-        <!-- pines along the far bank -->
-        <g fill="#5e6549">
-          <path d="M118,118 L102,158 L134,158 Z"/><rect x="116" y="158" width="4" height="7"/>
-          <path d="M168,130 L156,162 L180,162 Z"/><rect x="166" y="162" width="4" height="6"/>
-          <path d="M300,110 L282,158 L318,158 Z"/><rect x="298" y="158" width="4" height="8"/>
-          <path d="M346,128 L333,160 L359,160 Z"/><rect x="344" y="160" width="4" height="6"/>
-          <path d="M902,116 L884,158 L920,158 Z"/><rect x="900" y="158" width="4" height="8"/>
-          <path d="M980,128 L968,160 L992,160 Z"/><rect x="978" y="160" width="4" height="6"/>
-          <path d="M1052,122 L1037,159 L1067,159 Z"/><rect x="1050" y="159" width="4" height="7"/>
-        </g>
-        <!-- river -->
-        <path fill="#9bb9b4" d="M0,170 C150,158 300,182 450,168 C620,150 780,182 950,164 C1080,152 1160,176 1200,166 L1200,224 L0,224 Z"/>
-        <path class="rw-ripple" d="M-70,191 C120,185 260,197 420,191 C600,184 740,197 920,191 C1080,185 1180,195 1330,191" fill="none" stroke="#eef3f0" stroke-width="2.6" stroke-linecap="round" opacity=".75"/>
-        <path class="rw-ripple r2" d="M-70,207 C140,201 300,211 470,206 C650,200 800,211 980,206 C1130,201 1210,209 1330,206" fill="none" stroke="#eef3f0" stroke-width="2" stroke-linecap="round" opacity=".5"/>
-        <!-- near bank / walking path -->
-        <path fill="#d9c49d" d="M0,221 C200,213 400,229 600,221 C800,213 1000,229 1200,221 L1200,300 L0,300 Z"/>
-        <path d="M0,221 C200,213 400,229 600,221 C800,213 1000,229 1200,221" fill="none" stroke="#ece0c4" stroke-width="3"/>
-        <!-- a walker on the path -->
-        <g transform="translate(520,270)">
-          <circle cx="0" cy="-30" r="5.5" fill="#b1532c"/>
-          <g fill="none" stroke="#b1532c" stroke-width="5" stroke-linecap="round">
-            <line x1="0" y1="-24" x2="0" y2="-9"/>
-            <line x1="0" y1="-9" x2="-7" y2="4"/>
-            <line x1="0" y1="-9" x2="8" y2="2"/>
-            <line x1="0" y1="-20" x2="-8" y2="-12"/>
-            <line x1="0" y1="-20" x2="7" y2="-14"/>
-          </g>
-        </g>
-        <!-- distant birds -->
-        <g fill="none" stroke="#b1532c" stroke-width="2" stroke-linecap="round" opacity=".7">
-          <path d="M250,80 q9,-7 18,0 q9,-7 18,0"/>
-          <path d="M300,96 q7,-5 14,0 q7,-5 14,0"/>
-        </g>
-      </svg>
-    </div>
+    <a href="#this-week" class="scroll-cue" aria-label="Scroll to content"><span></span></a>
   </section>
 
   <!-- by the numbers -->
@@ -257,5 +213,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="js/main.js?v=7"></script>
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="js/hero3d.js?v=1"></script>
 </body>
 </html>
