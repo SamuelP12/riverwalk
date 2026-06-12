@@ -57,20 +57,23 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-h
 .nav-cta{background:var(--teal);color:#fff!important;padding:9px 16px;border-radius:999px;font-weight:620;transition:transform .2s,background .25s}
 .nav-cta:hover{background:#974327;transform:translateY(-1px)}
 
-/* ===== hero (interactive 3D river trail) ===== */
-.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;color:#fff;background:linear-gradient(180deg,#dfeaf0 0%,#e9eadf 46%,#e7ddc6 100%)}
+/* ===== hero (realistic satellite flythrough of the route) ===== */
+.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;color:#fff;background:linear-gradient(180deg,#cfe0e4 0%,#dfe4d3 50%,#cdbf9c 100%)}
 @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-80px)}}
-.hero3d{position:absolute;inset:0;z-index:1;cursor:grab}
-.hero3d canvas{display:block}
-.hero3d-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;padding:0 24px}
-.hero3d-title{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,7vw,5.2rem);letter-spacing:.01em;line-height:1.04;color:#fff;text-shadow:0 6px 34px rgba(22,30,24,.5),0 2px 10px rgba(22,30,24,.45)}
-.hero3d-sub{margin-top:16px;font-size:clamp(1rem,2vw,1.32rem);color:rgba(255,255,255,.95);max-width:34ch;text-shadow:0 2px 16px rgba(22,30,24,.55)}
-.hero .scroll-cue{z-index:3;border-color:rgba(255,255,255,.85)}
+.hero-map{position:absolute;inset:0;z-index:1}
+.hero-map .maplibregl-canvas{outline:none}
+.hero-map .maplibregl-ctrl-attrib{font-size:10px;opacity:.7}
+.hero-map-veil{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(18,26,20,.34) 0%,rgba(18,26,20,.05) 20%,transparent 46%,rgba(18,26,20,.18) 72%,rgba(18,26,20,.5) 100%)}
+.hero3d-overlay{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;padding:0 24px}
+.hero3d-title{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,7vw,5.2rem);letter-spacing:.01em;line-height:1.04;color:#fff;text-shadow:0 6px 34px rgba(10,16,10,.6),0 2px 10px rgba(10,16,10,.55)}
+.hero3d-sub{margin-top:16px;font-size:clamp(1rem,2vw,1.32rem);color:rgba(255,255,255,.96);max-width:38ch;text-shadow:0 2px 16px rgba(10,16,10,.6)}
+.hero .scroll-cue{z-index:4;border-color:rgba(255,255,255,.85)}
 .hero .scroll-cue span{background:#fff}
-/* static fallback when WebGL is unavailable */
-.hero.no3d{background:linear-gradient(180deg,#cfe0e4 0%,#dfe4d3 50%,#cdbf9c 100%)}
-.hero.no3d .hero3d{display:none}
-@media(prefers-reduced-motion:reduce){.hero3d{cursor:default}}
+/* fallback when WebGL/map is unavailable */
+.hero.no-map .hero-map{display:none}
+/* nav text stays light over the dark satellite imagery, until the cream bar appears on scroll */
+.nav.at-top:not(.scrolled) .brand{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.45)}
+.nav.at-top:not(.scrolled) .nav-links a{color:rgba(255,255,255,.94);text-shadow:0 1px 8px rgba(0,0,0,.4)}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;font-weight:620;font-size:.98rem;transition:transform .2s ease,box-shadow .25s ease,background .25s ease;cursor:pointer;border:none}
 .btn-primary{background:var(--white);color:var(--river-deep);box-shadow:var(--shadow)}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 50px -18px rgba(16,48,59,.6)}

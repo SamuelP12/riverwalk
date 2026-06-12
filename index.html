@@ -10,7 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&display=swap" />
-  <link rel="stylesheet" href="css/style.css?v=10" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="css/style.css?v=11" />
 </head>
 <body>
   <!-- scroll progress -->
@@ -36,10 +37,11 @@
 
   <!-- hero -->
   <section class="hero" id="top">
-    <div class="hero3d" id="hero3d" aria-hidden="true"></div>
+    <div class="hero-map" id="heroMap" aria-hidden="true"></div>
+    <div class="hero-map-veil" aria-hidden="true"></div>
     <div class="hero3d-overlay">
       <h1 class="hero3d-title reveal">Winthrop Riverwalk</h1>
-      <p class="hero3d-sub reveal">A trail along the river, in the heart of downtown Winthrop. Move your mouse to look around — scroll down to begin.</p>
+      <p class="hero3d-sub reveal">The route along the Chewuch and Methow rivers, in the heart of downtown Winthrop. Scroll down to begin.</p>
     </div>
     <a href="#this-week" class="scroll-cue" aria-label="Scroll to content"><span></span></a>
   </section>
@@ -213,9 +215,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="js/main.js?v=7"></script>
-  <script type="importmap">
-  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
-  </script>
-  <script type="module" src="js/hero3d.js?v=1"></script>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="js/heroMap.js?v=1"></script>
 </body>
 </html>
