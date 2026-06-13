@@ -320,6 +320,11 @@
     if (n >= 1e6) return { c: String(Math.round(n / 1e4) / 100), p: "$", s: "M" };
     return { c: String(Math.round(n / 1e3)), p: "$", s: "K" };
   }
+  function moneyWords(n) {
+    if (n >= 1e6) { var m = n / 1e6; return "$" + (m % 1 ? +m.toFixed(2) : m) + " million"; }
+    if (n >= 1e3) return "$" + Math.round(n / 1e3) + "K";
+    return "$" + Math.round(n);
+  }
   var fundBar = document.getElementById("fundBar");
   if (fundBar) {
     var fundObs = new IntersectionObserver(function (es) {
@@ -341,12 +346,13 @@
       if (fundBar) { fundBar.dataset.target = pct; if (fundBar.style.width) fundBar.style.width = pct + "%"; }
       var ft = document.getElementById("fundText"); if (ft) ft.textContent = fmtMoney(raised) + " raised of " + fmtMoney(goal);
       var fr = document.getElementById("fundRemaining"); if (fr) fr.textContent = fmtMoney(remaining) + " to go";
+      var gap = document.getElementById("gapAmount"); if (gap) gap.textContent = moneyWords(goal);
       var donate = (d.links && d.links.donate) || "";
       var db = document.getElementById("donateBtn");
       if (db && donate) { db.href = donate; db.target = "_blank"; db.rel = "noopener"; }
     } catch (e) {}
   }
-  fetch("data/site.json?v=2").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(applySite).catch(function () {});
+  fetch("data/site.json?v=3").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(applySite).catch(function () {});
 
   /* ---------- email signup ---------- */
   var form = document.getElementById("signupForm");
