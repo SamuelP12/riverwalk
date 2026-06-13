@@ -265,9 +265,11 @@
   }
 
   /* refresh triggers once everything has laid out */
+  function toTop() { window.scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true, force: true }); }
   window.addEventListener("load", function () {
-    window.scrollTo(0, 0);
-    if (lenis) lenis.scrollTo(0, { immediate: true });
-    if (anim && ST) ST.refresh();
+    if (anim && ST) ST.refresh();   // recalc first, so it can't leave us mid-page
+    toTop();
+    requestAnimationFrame(toTop);
   });
+  window.addEventListener("pageshow", function (e) { if (e.persisted) toTop(); });
 })();
