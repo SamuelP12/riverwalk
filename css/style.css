@@ -236,6 +236,15 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-h
 .signup-msg.show{opacity:1;transform:none}
 .signup-msg.err{color:#c8551f}
 
+/* ===== pull quote ===== */
+.quote-band{background:linear-gradient(180deg,#f3ecda,#ece1ca);text-align:center;position:relative;overflow:hidden}
+.quote-inner{max-width:840px;margin:0 auto;position:relative;padding-top:14px}
+.quote-inner::before{content:"\201C";position:absolute;top:-.34em;left:50%;transform:translateX(-50%);font-family:var(--display);font-size:clamp(6rem,15vw,10rem);line-height:1;color:rgba(177,83,44,.15);z-index:0;pointer-events:none}
+.pull-quote{position:relative;z-index:1;font-family:var(--display);font-weight:400;font-size:clamp(1.55rem,4.3vw,2.9rem);line-height:1.2;letter-spacing:.005em;color:var(--ink)}
+.quote-cite{display:block;margin-top:22px;font-size:.94rem;font-weight:600;letter-spacing:.04em;color:var(--ink-soft);font-style:normal}
+.quote-cite a{color:var(--teal);border-bottom:1px solid rgba(177,83,44,.4)}
+.quote-cite a:hover{border-bottom-color:var(--teal)}
+
 /* ===== why it matters ===== */
 .why{background:linear-gradient(180deg,#fbf7ee,var(--paper))}
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:20px}
