@@ -57,12 +57,17 @@
     GS.to("#heroImg", { yPercent: 12, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   }
 
-  /* ---------- reveal on scroll ---------- */
+  /* ---------- reveal on scroll (batched + staggered) ---------- */
   if (anim) {
-    GS.utils.toArray(".reveal").forEach(function (el) {
-      GS.to(el, { opacity: 1, y: 0, duration: .9, ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 86%" } });
+    ST.batch(".reveal", {
+      start: "top 88%",
+      onEnter: function (els) {
+        GS.to(els, { opacity: 1, y: 0, duration: 1.05, ease: "power3.out", stagger: 0.09, overwrite: true });
+      }
     });
+    // cinematic hero exit: text drifts up + fades as you leave
+    GS.to(".hero-inner", { yPercent: -9, opacity: 0, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom 30%", scrub: true } });
   }
 
   /* ---------- gap bridge slides in from the sides ---------- */
@@ -156,6 +161,7 @@
     list.sort(function (a, b) { var x = Date.parse(b.date), y = Date.parse(a.date); return (isNaN(x) ? 0 : x) - (isNaN(y) ? 0 : y); });
     renderFeature(list[0]);
     renderArchive(list.slice(1, 4));
+    if (anim) GS.from(".archive .up-card", { opacity: 0, y: 30, duration: .9, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: "#archiveGrid", start: "top 90%" } });
     if (anim && ST) ST.refresh();
   }).catch(function () {
     if (featureCard) featureCard.innerHTML = '<div class="feature-text"><span class="feature-date">Heads up</span><h3>Updates load on the live site</h3><p>The weekly updates load from data/updates.json — view this on the published URL.</p></div>';
