@@ -65,19 +65,6 @@
     });
   }
 
-  /* ---------- statement: words light up on scroll ---------- */
-  var stateText = document.getElementById("stateText");
-  if (stateText) {
-    var parts = stateText.textContent.split(/(\s+)/);
-    stateText.innerHTML = parts.map(function (w) {
-      return /\S/.test(w) ? '<span class="w">' + w.replace(/[&<>]/g, "") + "</span>" : w;
-    }).join("");
-    if (anim) {
-      GS.to(stateText.querySelectorAll(".w"), { opacity: 1, stagger: .07, ease: "none",
-        scrollTrigger: { trigger: stateText, start: "top 78%", end: "bottom 62%", scrub: .6 } });
-    }
-  }
-
   /* ---------- gap bridge slides in from the sides ---------- */
   if (anim) {
     GS.fromTo(".gap-left", { xPercent: -14, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 1.1, ease: "power3.out",
@@ -94,17 +81,6 @@
       GS.fromTo(img, { yPercent: -9 }, { yPercent: 9, ease: "none",
         scrollTrigger: { trigger: img.closest(".band") || img, start: "top bottom", end: "bottom top", scrub: true } });
     });
-  }
-
-  /* ---------- pinned horizontal plan (desktop) ---------- */
-  if (anim && matchMedia("(min-width:881px)").matches) {
-    var row = document.getElementById("planRow"), track = document.getElementById("planTrack");
-    if (row && track) {
-      var dist = function () { return Math.max(0, row.scrollWidth - document.documentElement.clientWidth); };
-      GS.to(row, { x: function () { return -dist(); }, ease: "none",
-        scrollTrigger: { trigger: track, pin: true, scrub: 1, start: "center center",
-          end: function () { return "+=" + dist(); }, invalidateOnRefresh: true } });
-    }
   }
 
   /* ---------- count-up ---------- */
