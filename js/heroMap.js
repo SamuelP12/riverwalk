@@ -6,18 +6,21 @@
   if (!el || typeof maplibregl === "undefined") { if (hero) hero.classList.add("no-map"); return; }
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // ---- The Riverwalk route, west -> east [lng, lat]. APPROXIMATE — replace with the exact
-  //      GPX/GeoJSON export for a perfect trace. Edit these points to fine-tune the path. ----
+  // ---- The Riverwalk route, north -> east [lng, lat]. Refined from the satellite shots, but still
+  //      hand-traced — for a pixel-perfect path, export the route as GPX/GeoJSON and drop the
+  //      coordinates in here. Walking trail: it follows the Chewuch's west bank down to the
+  //      confluence at downtown, then runs east along the Methow's north bank to the footbridge. ----
   var ROUTE = [
-    [-120.18805, 48.47895],   // NW start, Chewuch River bank (Susie Stephens area)
-    [-120.18735, 48.47720],
-    [-120.18620, 48.47520],
-    [-120.18520, 48.47435],   // confluence / footbridge by Mack Lloyd Park
-    [-120.18380, 48.47455],
-    [-120.18050, 48.47505],   // along the Methow, below downtown
-    [-120.17600, 48.47585],
-    [-120.17150, 48.47675],
-    [-120.16780, 48.47720]    // east end, Methow River bridge
+    [-120.18460, 48.47842],   // north end: Susie Stephens footbridge over the Chewuch
+    [-120.18548, 48.47695],   // bend on the west bank
+    [-120.18602, 48.47548],   // south, by the trailer court, turning toward town
+    [-120.18505, 48.47445],   // confluence (west node)
+    [-120.18378, 48.47435],   // confluence / Spring Creek bridge (east node)
+    [-120.18150, 48.47455],   // along the Methow, below downtown
+    [-120.17900, 48.47492],
+    [-120.17600, 48.47545],
+    [-120.17300, 48.47585],   // near the Methow footbridge
+    [-120.17120, 48.47602]    // east end
   ];
 
   var map;
@@ -27,8 +30,8 @@
       interactive: false,
       attributionControl: true,
       center: ROUTE[0],
-      zoom: 15.3,
-      pitch: 64,
+      zoom: 15.6,
+      pitch: 73,
       bearing: 35,
       maxPitch: 85,
       style: {
@@ -45,7 +48,7 @@
             type: "raster-dem",
             tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],
             tileSize: 256,
-            maxzoom: 14,
+            maxzoom: 15,
             encoding: "terrarium"
           }
         },
@@ -60,7 +63,7 @@
   map.on("error", function () { /* ignore occasional tile errors */ });
 
   map.on("load", function () {
-    try { map.setTerrain({ source: "dem", exaggeration: 1.3 }); } catch (e) {}
+    try { map.setTerrain({ source: "dem", exaggeration: 2.4 }); } catch (e) {}
     try {
       map.setSky({
         "sky-color": "#bcd6e6", "horizon-color": "#e7ddc6", "fog-color": "#e8eadf",
@@ -103,7 +106,7 @@
   function startFly() {
     if (reduce) {
       var c = at(total * 0.5), a2 = at(total * 0.5 + total * 0.02);
-      map.jumpTo({ center: c, bearing: bearing(c, a2), pitch: 60, zoom: 15.2 });
+      map.jumpTo({ center: c, bearing: bearing(c, a2), pitch: 70, zoom: 15.8 });
       return;
     }
     var DUR = 60000;            // ms for one there-and-back pass
@@ -116,7 +119,7 @@
       var d = s * total;
       var c = at(d);
       var ahead = at(Math.max(0, Math.min(total, d + dir * total * 0.03)));
-      map.jumpTo({ center: c, bearing: bearing(c, ahead), pitch: 65, zoom: 15.7 });
+      map.jumpTo({ center: c, bearing: bearing(c, ahead), pitch: 74, zoom: 16.1 });
       raf = requestAnimationFrame(frame);
     }
     raf = requestAnimationFrame(frame);
