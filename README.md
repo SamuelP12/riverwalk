@@ -39,6 +39,7 @@ The fundraising progress and the goal length live in **`data/site.json`**. Edit 
 - `raised` — total donations received so far (US dollars). Update this as gifts come in; **"still to raise" is figured automatically** as `goal − raised`.
 - `goal` — the fundraising target.
 - `goalLengthFeet` — total planned length of the Riverwalk, end to end (set to the real goal).
+- `links.donate` — the URL the **Donate** button opens (e.g. your Community Foundation of NCW giving page). Leave `""` and the button stays inert until you add it.
 
 Like the weekly updates, this is just one small file to edit — no PDFs, no rebuild. (Want truly no-code updates from a Google Sheet instead of editing this file? That's possible too — ask and I'll wire it up.)
 

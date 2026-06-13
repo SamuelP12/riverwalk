@@ -1,10 +1,13 @@
 {
-  "_comment": "Edit these numbers and the website updates itself (the by-the-numbers stat and the support progress bar). 'raised' = total donations received so far, in US dollars. 'Still to raise' is figured automatically as goal minus raised. 'goalLengthFeet' = the total planned length of the Riverwalk, end to end.",
+  "_comment": "Edit these numbers and the website updates itself (the by-the-numbers stat and the support progress bar). 'raised' = total donations received so far, in US dollars. 'Left to raise' is figured automatically as goal minus raised. 'goalLengthFeet' = the total planned length of the Riverwalk, end to end. 'links.donate' = the URL the Donate button opens (e.g. your Community Foundation of NCW giving page).",
   "fundraising": {
-    "goal": 1000000,
+    "goal": 1200000,
     "raised": 250000
   },
   "trail": {
     "goalLengthFeet": 1500
+  },
+  "links": {
+    "donate": ""
   }
 }

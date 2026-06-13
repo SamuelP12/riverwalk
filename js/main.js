@@ -245,8 +245,13 @@
     .then(function (data) {
       var list = (data && data.updates) || [];
       if (!list.length) throw new Error("no updates");
-      renderFeature(list[0]);
-      renderArchive(list);
+      // newest first — guarantees "This Week" is the latest regardless of file order
+      list.sort(function (a, b) {
+        var da = Date.parse(a.date), db = Date.parse(b.date);
+        return (isNaN(db) ? 0 : db) - (isNaN(da) ? 0 : da);
+      });
+      renderFeature(list[0]);                 // This Week = latest
+      renderArchive(list.slice(1, 4));        // archive = the previous 3
       requestAnimationFrame(function () { tiltCards(); onScroll(); });
     })
     .catch(function () {
@@ -336,9 +341,12 @@
       if (fundBar) { fundBar.dataset.target = pct; if (fundBar.style.width) fundBar.style.width = pct + "%"; }
       var ft = document.getElementById("fundText"); if (ft) ft.textContent = fmtMoney(raised) + " raised of " + fmtMoney(goal);
       var fr = document.getElementById("fundRemaining"); if (fr) fr.textContent = fmtMoney(remaining) + " to go";
+      var donate = (d.links && d.links.donate) || "";
+      var db = document.getElementById("donateBtn");
+      if (db && donate) { db.href = donate; db.target = "_blank"; db.rel = "noopener"; }
     } catch (e) {}
   }
-  fetch("data/site.json?v=1").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(applySite).catch(function () {});
+  fetch("data/site.json?v=2").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(applySite).catch(function () {});
 
   /* ---------- email signup ---------- */
   var form = document.getElementById("signupForm");
