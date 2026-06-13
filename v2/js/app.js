@@ -70,6 +70,19 @@
       scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom 30%", scrub: true } });
   }
 
+  /* ---------- vision statement: grey -> clear, word by word ---------- */
+  var stateText = document.getElementById("stateText");
+  if (stateText) {
+    var parts = stateText.textContent.split(/(\s+)/);
+    stateText.innerHTML = parts.map(function (w) {
+      return /\S/.test(w) ? '<span class="w">' + w.replace(/[&<>]/g, "") + "</span>" : w;
+    }).join("");
+    if (anim) {
+      GS.to(stateText.querySelectorAll(".w"), { opacity: 1, stagger: 0.08, ease: "none",
+        scrollTrigger: { trigger: stateText, start: "top 78%", end: "bottom 58%", scrub: 0.6 } });
+    }
+  }
+
   /* ---------- gap bridge slides in from the sides ---------- */
   if (anim) {
     GS.fromTo(".gap-left", { xPercent: -14, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 1.1, ease: "power3.out",
@@ -160,6 +173,7 @@
     if (!list.length) return;
     list.sort(function (a, b) { var x = Date.parse(b.date), y = Date.parse(a.date); return (isNaN(x) ? 0 : x) - (isNaN(y) ? 0 : y); });
     renderFeature(list[0]);
+    if (anim) GS.from("#featureCard .feature-media img", { scale: 1.14, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: "#featureCard", start: "top 82%" } });
     renderArchive(list.slice(1, 4));
     if (anim) GS.from(".archive .up-card", { opacity: 0, y: 30, duration: .9, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: "#archiveGrid", start: "top 90%" } });
     if (anim && ST) ST.refresh();
