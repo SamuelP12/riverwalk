@@ -177,8 +177,9 @@
   }
   function mediaHTML(u, cls, weekCls) {
     if (u.image) {
+      var src = /^(https?:|images\/)/.test(u.image) ? u.image : "images/" + u.image;
       return '<div class="' + cls + '"><span class="' + weekCls + '">' + esc(u.week) + "</span>" +
-        '<img src="' + esc(u.image) + '" alt="" loading="lazy"></div>';
+        '<img src="' + esc(src) + '" alt="" loading="lazy"></div>';
     }
     return '<div class="' + cls + '"><span class="' + weekCls + '">' + esc(u.week) + "</span></div>";
   }
@@ -250,7 +251,7 @@
     });
   }
 
-  fetch("data/updates.json?v=2")
+  fetch("data/updates.json?v=3")
     .then(function (r) { if (!r.ok) throw new Error("fetch failed"); return r.json(); })
     .then(function (data) {
       var list = (data && data.updates) || [];

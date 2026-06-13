@@ -246,6 +246,15 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-h
 .signup-msg.show{opacity:1;transform:none}
 .signup-msg.err{color:#c8551f}
 
+/* ===== immersive photo band ===== */
+.immersive{position:relative;height:clamp(340px,56vh,540px);overflow:hidden;display:flex;align-items:flex-end}
+.immersive-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 44%;animation:kenburns 22s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.08)}}
+.immersive::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,26,18,.12) 0%,transparent 32%,rgba(16,22,14,.72) 100%)}
+.immersive-overlay{position:relative;z-index:1;width:100%;padding-bottom:clamp(28px,5vw,58px);color:#fff}
+.immersive-kicker{font-family:var(--display);font-weight:400;font-size:clamp(.92rem,2vw,1.25rem);color:#ffd25f;letter-spacing:.02em;margin-bottom:10px;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.immersive-line{font-size:clamp(1.15rem,2.7vw,1.75rem);max-width:32ch;line-height:1.3;font-weight:500;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+
 /* ===== pull quote ===== */
 .quote-band{background:linear-gradient(180deg,#f3ecda,#ece1ca);text-align:center;position:relative;overflow:hidden}
 .quote-inner{max-width:840px;margin:0 auto;position:relative;padding-top:14px}
