@@ -4,14 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Winthrop Riverwalk</title>
-  <meta name="description" content="Following the Winthrop Riverwalk — a community project reconnecting our Old-West town to the river that made it. Weekly progress, the plan, and how to get involved." />
+  <meta name="description" content="Help close the gap on the Winthrop Riverwalk — a safe, six-foot riverfront path along the Chewuch and Methow rivers in the heart of downtown Winthrop. Donate, follow weekly progress, see the plan." />
+  <meta name="theme-color" content="#6e7257" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236e7257'/%3E%3Cpath d='M3 19c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 5 4' fill='none' stroke='%23ffce4a' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Winthrop Riverwalk — Help Close the Gap" />
+  <meta property="og:description" content="A safe, six-foot path along the Chewuch and Methow rivers in the heart of downtown Winthrop. Every gift helps unlock a $2.06M state grant." />
+  <meta property="og:image" content="https://samuelp12.github.io/riverwalk/images/logo.png" />
+  <meta property="og:url" content="https://samuelp12.github.io/riverwalk/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Winthrop Riverwalk — Help Close the Gap" />
+  <meta name="twitter:description" content="A safe riverfront path in the heart of Winthrop. Every gift helps unlock a $2.06M state grant." />
+  <meta name="twitter:image" content="https://samuelp12.github.io/riverwalk/images/logo.png" />
   <link rel="preconnect" href="https://rsms.me/" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Rye&display=swap" />
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
-  <link rel="stylesheet" href="css/style.css?v=16" />
+  <link rel="stylesheet" href="css/style.css?v=17" />
 </head>
 <body>
   <!-- scroll progress -->
@@ -27,11 +38,11 @@
       <span>Riverwalk</span>
     </a>
     <nav class="nav-links">
-      <a href="#this-week">This Week</a>
+      <a href="#why">Why</a>
       <a href="#plan">The Plan</a>
-      <a href="#video">Watch</a>
-      <a href="#archive">Updates</a>
-      <a href="#involved" class="nav-cta">Get Involved</a>
+      <a href="#this-week">Updates</a>
+      <a href="#signup">Subscribe</a>
+      <a href="#involved" class="nav-cta js-donate">Donate</a>
     </nav>
   </header>
 
@@ -41,9 +52,13 @@
     <div class="hero-map-veil" aria-hidden="true"></div>
     <div class="hero3d-overlay">
       <h1 class="hero3d-title reveal">Winthrop Riverwalk</h1>
-      <p class="hero3d-sub reveal">The route along the Chewuch and Methow rivers, in the heart of downtown Winthrop. Scroll down to begin.</p>
+      <p class="hero3d-sub reveal">A safe, riverfront path along the Chewuch and Methow — in the heart of downtown Winthrop. Help us close the last gap.</p>
+      <div class="hero-cta reveal">
+        <a href="#involved" class="btn btn-primary btn-lg js-donate">Donate</a>
+        <a href="#signup" class="btn btn-clear">Get weekly updates</a>
+      </div>
     </div>
-    <a href="#this-week" class="scroll-cue" aria-label="Scroll to content"><span></span></a>
+    <a href="#why" class="scroll-cue" aria-label="Scroll to content"><span></span></a>
   </section>
 
   <!-- by the numbers -->
@@ -203,12 +218,13 @@
     </div>
     <div class="wrap newsletter-inner reveal">
       <span class="eyebrow">Stay in the loop</span>
-      <h2>The update of the week, in your inbox</h2>
-      <p class="section-sub">One short email each week — what changed on the river, fresh photos, and upcoming work-day dates. No spam, unsubscribe anytime.</p>
+      <h2>Watch the Riverwalk take shape</h2>
+      <p class="section-sub">One short email a week — what changed on the river, fresh photos, work‑day dates, and the moments worth celebrating. No spam, unsubscribe anytime.</p>
       <form class="signup-form" id="signupForm" data-endpoint="" novalidate>
         <input type="email" id="signupEmail" name="email" placeholder="you@email.com" autocomplete="email" aria-label="Email address" required />
-        <button type="submit" class="btn btn-primary">Sign me up</button>
+        <button type="submit" class="btn btn-primary">Join the list</button>
       </form>
+      <p class="signup-trust">Join your neighbors following every step. We'll never share your email.</p>
       <p class="signup-msg" id="signupMsg" role="status"></p>
     </div>
   </section>
@@ -219,7 +235,12 @@
       <div class="reveal">
         <span class="eyebrow light">Support the Riverwalk</span>
         <h2>Help us close the gap</h2>
-        <p class="section-sub light">Winthrop's residents, visitors, and neighbors deserve safe passage. We're raising <strong>$1.2 million</strong> to match a <strong>$2.06 million</strong> grant from Washington State's Recreation and Conservation Office and finish the trail. Every gift moves it forward.</p>
+        <p class="section-sub light">Winthrop's residents, visitors, and neighbors deserve safe passage. We're raising <strong>$1.2 million</strong> to finish the trail.</p>
+
+        <div class="match-note reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.6-9.5-9A4.5 4.5 0 0112 6a4.5 4.5 0 019.5 6c-2.5 4.4-9.5 9-9.5 9z"/></svg>
+          <p><strong>Your gift goes further.</strong> Local donations are the match that unlocks a <strong>$2.06&nbsp;million</strong> Washington State grant — every dollar you give helps bring state money to the river.</p>
+        </div>
 
         <div class="gap-bridge reveal" aria-hidden="true">
           <div class="gb-side gb-left">
@@ -251,11 +272,34 @@
             </svg>
           </div>
         </div>
+        <div class="donate-tiers reveal" id="donateTiers" role="group" aria-label="Choose a donation amount">
+          <button type="button" class="tier" data-amount="25">$25</button>
+          <button type="button" class="tier" data-amount="50">$50</button>
+          <button type="button" class="tier is-selected" data-amount="100">$100</button>
+          <button type="button" class="tier" data-amount="250">$250</button>
+          <button type="button" class="tier" data-amount="1000">$1,000</button>
+          <button type="button" class="tier tier-other" data-amount="">Other</button>
+        </div>
+        <p class="tier-impact reveal" id="tierImpact">A gift of $100 helps lay the hard-surface path along the water.</p>
+
         <div class="hero-actions">
-          <a href="#" class="btn btn-primary btn-lg" id="donateBtn">Donate to the Riverwalk</a>
+          <a href="#involved" class="btn btn-donate btn-lg js-donate" id="donateBtn">Donate $100</a>
           <a href="mailto:planner@townofwinthrop.com?subject=Winthrop%20Riverwalk" class="btn btn-ghost">Email the team</a>
         </div>
-        <p class="involved-fine">A project of the Town of Winthrop &amp; the Friends of the Riverwalk. Gifts are managed by our fiscal sponsor, the Community Foundation of North Central Washington, and may be tax-deductible. Contact: Rocklynn Culp, Town Planner — planner@townofwinthrop.com.</p>
+        <p class="involved-fine">100% goes to the Riverwalk. Gifts are managed by our fiscal sponsor, the Community Foundation of North Central Washington, and may be tax-deductible. A project of the Town of Winthrop &amp; the Friends of the Riverwalk. Contact: Rocklynn Culp, Town Planner — planner@townofwinthrop.com.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- partners / trust -->
+  <section class="partners" aria-label="Partners">
+    <div class="wrap">
+      <p class="partners-label">In partnership with</p>
+      <div class="partners-list">
+        <span>Town of Winthrop</span>
+        <span>Friends of the Riverwalk</span>
+        <span>Community Foundation of North Central Washington</span>
+        <span>WA State Recreation &amp; Conservation Office</span>
       </div>
     </div>
   </section>
@@ -281,8 +325,14 @@
     </div>
   </div>
 
+  <!-- persistent donate CTA -->
+  <a href="#involved" class="float-donate js-donate" id="floatDonate" aria-label="Donate to the Riverwalk">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.6-9.5-9A4.5 4.5 0 0112 6a4.5 4.5 0 019.5 6c-2.5 4.4-9.5 9-9.5 9z"/></svg>
+    <span>Donate</span>
+  </a>
+
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=9"></script>
+  <script src="js/main.js?v=10"></script>
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="js/heroMap.js?v=2"></script>
 </body>

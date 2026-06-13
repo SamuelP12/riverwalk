@@ -255,6 +255,35 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-h
 .why-card h3{font-size:1.18rem;margin-bottom:9px}
 .why-card p{color:var(--ink-soft);font-size:.97rem}
 
+/* ===== conversion: donate + email + trust ===== */
+.btn-donate{background:var(--teal);color:#fff;box-shadow:0 14px 34px -12px rgba(177,83,44,.6)}
+.btn-donate:hover{background:#9a4526;color:#fff;transform:translateY(-2px);box-shadow:0 20px 46px -12px rgba(177,83,44,.72)}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px;pointer-events:auto}
+
+.match-note{display:flex;align-items:flex-start;gap:14px;max-width:600px;margin:6px auto 4px;padding:15px 20px;text-align:left;background:rgba(255,206,74,.1);border:1px solid rgba(255,206,74,.3);border-radius:14px}
+.match-note svg{flex:0 0 auto;width:26px;height:26px;color:#ffce4a;margin-top:1px}
+.match-note p{font-size:.98rem;line-height:1.5;color:rgba(255,255,255,.9)}
+.match-note strong{color:#fff;font-weight:720}
+
+.donate-tiers{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:560px;margin:28px auto 0}
+.tier{font-family:inherit;font-size:1.05rem;font-weight:680;color:#fff;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.3);border-radius:12px;padding:12px 20px;cursor:pointer;transition:transform .15s,background .2s,border-color .2s,color .2s}
+.tier:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+.tier.is-selected{background:#ffce4a;border-color:#ffce4a;color:#33372a}
+.tier-impact{margin:18px auto 0;max-width:48ch;min-height:1.3em;font-size:.96rem;color:rgba(255,255,255,.84)}
+
+.float-donate{position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:140;display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:999px;background:var(--teal);color:#fff;font-weight:680;font-size:1rem;box-shadow:0 16px 38px -10px rgba(177,83,44,.7);transform:translateY(150%);opacity:0;transition:transform .4s cubic-bezier(.2,.8,.3,1),opacity .4s,background .2s}
+.float-donate.show{transform:translateY(0);opacity:1}
+.float-donate:hover{background:#9a4526}
+.float-donate svg{width:20px;height:20px}
+@media(max-width:560px){.float-donate{left:14px;right:14px;justify-content:center;bottom:14px}}
+
+.signup-trust{margin-top:14px;font-size:.84rem;color:var(--ink-soft);opacity:.85}
+
+.partners{background:var(--ink);color:rgba(255,255,255,.72);padding:36px 0 10px;text-align:center}
+.partners-label{font-size:.74rem;text-transform:uppercase;letter-spacing:.18em;color:rgba(255,255,255,.5);margin-bottom:16px}
+.partners-list{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px clamp(20px,5vw,50px)}
+.partners-list span{font-family:var(--display);font-size:clamp(.95rem,1.7vw,1.18rem);color:rgba(255,255,255,.82);letter-spacing:.01em}
+
 /* ===== responsive ===== */
 @media(max-width:860px){
   .nav-links a:not(.nav-cta){display:none}

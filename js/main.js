@@ -13,7 +13,7 @@
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
       a.addEventListener("click", function (e) {
         var id = a.getAttribute("href");
-        if (id.length < 2) return;
+        if (!id || id.charAt(0) !== "#" || id.length < 2) return; // ignore external (e.g. donate) links
         var el = document.querySelector(id);
         if (!el) return;
         e.preventDefault();
@@ -28,6 +28,7 @@
   var hero = document.querySelector(".hero");
   var heroRidge = document.querySelector(".hero-ridge");
   var heroContent = document.querySelector(".hero .hero-content");
+  var floatDonate = document.getElementById("floatDonate");
 
   function onScroll(scrollY) {
     var y = scrollY != null ? scrollY : window.scrollY;
@@ -41,6 +42,9 @@
       var heroH = hero ? hero.offsetHeight - 90 : 400;
       nav.classList.toggle("at-top", y < heroH);
     }
+
+    // persistent donate button appears once past the hero
+    if (floatDonate) floatDonate.classList.toggle("show", y > (hero ? hero.offsetHeight * 0.6 : 500));
 
     // hero parallax (scroll + cursor)
     lastY = y;
@@ -347,12 +351,46 @@
       var ft = document.getElementById("fundText"); if (ft) ft.textContent = fmtMoney(raised) + " raised of " + fmtMoney(goal);
       var fr = document.getElementById("fundRemaining"); if (fr) fr.textContent = fmtMoney(remaining) + " to go";
       var gap = document.getElementById("gapAmount"); if (gap) gap.textContent = moneyWords(goal);
-      var donate = (d.links && d.links.donate) || "";
-      var db = document.getElementById("donateBtn");
-      if (db && donate) { db.href = donate; db.target = "_blank"; db.rel = "noopener"; }
+      donateUrl = (d.links && d.links.donate) || "";
+      updateDonate();
     } catch (e) {}
   }
   fetch("data/site.json?v=3").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(applySite).catch(function () {});
+
+  /* ---------- donate: suggested amounts + platform links ---------- */
+  var donateUrl = "";
+  var selectedAmount = "100";
+  var IMPACT = {
+    "25": "A gift of $25 plants native willow and dogwood to hold the riverbank.",
+    "50": "A gift of $50 helps fund an interpretive sign along the trail.",
+    "100": "A gift of $100 helps lay the hard-surface path along the water.",
+    "250": "A gift of $250 sets a stretch of boardwalk railing.",
+    "1000": "A gift of $1,000 funds a span of the trail's micro-pile support.",
+    "": "Give what feels right — every dollar helps unlock the state grant."
+  };
+  function updateDonate() {
+    document.querySelectorAll(".js-donate").forEach(function (a) {
+      if (!donateUrl) return;                 // no platform yet → leave the #involved scroll link
+      var url = donateUrl;
+      if (a.id === "donateBtn" && selectedAmount) url += (url.indexOf("?") > -1 ? "&" : "?") + "amount=" + selectedAmount;
+      a.href = url; a.target = "_blank"; a.rel = "noopener";
+    });
+    var db = document.getElementById("donateBtn");
+    if (db) db.textContent = selectedAmount ? "Donate $" + Number(selectedAmount).toLocaleString() : "Donate";
+  }
+  var tiers = document.getElementById("donateTiers");
+  if (tiers) {
+    var impactEl = document.getElementById("tierImpact");
+    tiers.querySelectorAll(".tier").forEach(function (t) {
+      t.addEventListener("click", function () {
+        tiers.querySelectorAll(".tier").forEach(function (x) { x.classList.remove("is-selected"); });
+        t.classList.add("is-selected");
+        selectedAmount = t.getAttribute("data-amount") || "";
+        if (impactEl) impactEl.textContent = IMPACT[selectedAmount] || IMPACT[""];
+        updateDonate();
+      });
+    });
+  }
 
   /* ---------- email signup ---------- */
   var form = document.getElementById("signupForm");
