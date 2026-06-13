@@ -1,6 +1,8 @@
 /* ===== Winthrop Riverwalk v2 — GSAP-driven editorial site ===== */
 (function () {
   "use strict";
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var GS = window.gsap, ST = window.ScrollTrigger;
   var anim = !reduce && !!GS && !!ST;
@@ -85,10 +87,10 @@
 
   /* ---------- gap bridge slides in from the sides ---------- */
   if (anim) {
-    GS.fromTo(".gap-left", { xPercent: -14, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 1.1, ease: "power3.out",
-      scrollTrigger: { trigger: "#gapStage", start: "top 80%" } });
-    GS.fromTo(".gap-right", { xPercent: 14, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 1.1, ease: "power3.out",
-      scrollTrigger: { trigger: "#gapStage", start: "top 80%" } });
+    GS.fromTo(".gap-left", { xPercent: -28, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 1.3, ease: "power3.out",
+      scrollTrigger: { trigger: "#gapStage", start: "top 82%" } });
+    GS.fromTo(".gap-right", { xPercent: 28, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 1.3, ease: "power3.out",
+      scrollTrigger: { trigger: "#gapStage", start: "top 82%" } });
     GS.from(".gap-amount", { scale: .55, opacity: 0, duration: .9, ease: "back.out(1.7)",
       scrollTrigger: { trigger: "#gapStage", start: "top 74%" } });
   }
@@ -263,5 +265,9 @@
   }
 
   /* refresh triggers once everything has laid out */
-  window.addEventListener("load", function () { if (anim && ST) ST.refresh(); });
+  window.addEventListener("load", function () {
+    window.scrollTo(0, 0);
+    if (lenis) lenis.scrollTo(0, { immediate: true });
+    if (anim && ST) ST.refresh();
+  });
 })();
