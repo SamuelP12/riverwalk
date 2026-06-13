@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&display=swap" />
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
-  <link rel="stylesheet" href="css/style.css?v=11" />
+  <link rel="stylesheet" href="css/style.css?v=12" />
 </head>
 <body>
   <!-- scroll progress -->
@@ -51,7 +51,7 @@
     <div class="wrap stats-grid">
       <div class="stat reveal"><div class="num" data-count="30">0</div><div class="label">Years this vision has been in the making</div></div>
       <div class="stat reveal"><div class="num" id="statLength" data-count="1500" data-suffix=" ft">0</div><div class="label">Feet of riverwalk, end to end — the goal</div></div>
-      <div class="stat reveal"><div class="num" id="statRaise" data-count="750" data-prefix="$" data-suffix="K">0</div><div class="label">Still to raise to finish the trail</div></div>
+      <div class="stat reveal"><div class="num" id="statRaise" data-count="750" data-prefix="$" data-suffix="K">0</div><div class="label">Left to raise</div></div>
     </div>
   </section>
 
@@ -179,6 +179,39 @@
         <span class="eyebrow light">Support the Riverwalk</span>
         <h2>Help us close the gap</h2>
         <p class="section-sub light">Winthrop's residents, visitors, and neighbors deserve safe passage. We're raising <strong>$1 million</strong> to match a <strong>$2.06 million</strong> grant from Washington State's Recreation and Conservation Office and finish the trail. Every gift moves it forward.</p>
+
+        <div class="gap-figure reveal">
+          <svg viewBox="0 0 640 170" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <rect x="0" y="150" width="640" height="20" fill="rgba(255,255,255,.05)"/>
+            <line x1="0" y1="150" x2="640" y2="150" stroke="rgba(255,255,255,.12)" stroke-width="2"/>
+            <!-- left bridge: Susie Stephens Trail -->
+            <rect x="40" y="118" width="8" height="34" fill="#5b6147"/><rect x="200" y="118" width="8" height="34" fill="#5b6147"/>
+            <rect x="0" y="104" width="232" height="15" rx="2" fill="#c9b489"/>
+            <g stroke="#a7945f" stroke-width="1.5"><line x1="30" y1="104" x2="30" y2="119"/><line x1="62" y1="104" x2="62" y2="119"/><line x1="94" y1="104" x2="94" y2="119"/><line x1="126" y1="104" x2="126" y2="119"/><line x1="158" y1="104" x2="158" y2="119"/><line x1="190" y1="104" x2="190" y2="119"/><line x1="220" y1="104" x2="220" y2="119"/></g>
+            <line x1="0" y1="88" x2="232" y2="88" stroke="#6e7257" stroke-width="3"/>
+            <g stroke="#6e7257" stroke-width="2.5"><line x1="8" y1="88" x2="8" y2="104"/><line x1="44" y1="88" x2="44" y2="104"/><line x1="80" y1="88" x2="80" y2="104"/><line x1="116" y1="88" x2="116" y2="104"/><line x1="152" y1="88" x2="152" y2="104"/><line x1="188" y1="88" x2="188" y2="104"/><line x1="224" y1="88" x2="224" y2="104"/></g>
+            <!-- right bridge: downtown boardwalk -->
+            <rect x="432" y="118" width="8" height="34" fill="#5b6147"/><rect x="592" y="118" width="8" height="34" fill="#5b6147"/>
+            <rect x="408" y="104" width="232" height="15" rx="2" fill="#c9b489"/>
+            <g stroke="#a7945f" stroke-width="1.5"><line x1="420" y1="104" x2="420" y2="119"/><line x1="452" y1="104" x2="452" y2="119"/><line x1="484" y1="104" x2="484" y2="119"/><line x1="516" y1="104" x2="516" y2="119"/><line x1="548" y1="104" x2="548" y2="119"/><line x1="580" y1="104" x2="580" y2="119"/><line x1="612" y1="104" x2="612" y2="119"/></g>
+            <line x1="408" y1="88" x2="640" y2="88" stroke="#6e7257" stroke-width="3"/>
+            <g stroke="#6e7257" stroke-width="2.5"><line x1="416" y1="88" x2="416" y2="104"/><line x1="452" y1="88" x2="452" y2="104"/><line x1="488" y1="88" x2="488" y2="104"/><line x1="524" y1="88" x2="524" y2="104"/><line x1="560" y1="88" x2="560" y2="104"/><line x1="596" y1="88" x2="596" y2="104"/><line x1="632" y1="88" x2="632" y2="104"/></g>
+            <!-- the gap: the Riverwalk to be built -->
+            <line x1="232" y1="50" x2="232" y2="120" stroke="rgba(255,206,74,.45)" stroke-width="1.5" stroke-dasharray="2 4"/>
+            <line x1="408" y1="50" x2="408" y2="120" stroke="rgba(255,206,74,.45)" stroke-width="1.5" stroke-dasharray="2 4"/>
+            <path d="M232,111 H408" stroke="#ffce4a" stroke-width="5" stroke-dasharray="3 12" stroke-linecap="round"/>
+            <g stroke="#ffce4a" stroke-width="2" fill="none">
+              <line x1="236" y1="62" x2="404" y2="62"/>
+              <path d="M236,62 l9,-5 M236,62 l9,5"/><path d="M404,62 l-9,-5 M404,62 l-9,5"/>
+            </g>
+          </svg>
+          <div class="gap-labels">
+            <span>Susie Stephens Trail</span>
+            <span class="gap-mid">560-ft gap — the Riverwalk closes it</span>
+            <span>Downtown boardwalk</span>
+          </div>
+        </div>
+
         <div class="fund">
           <div class="fund-bar"><span id="fundBar" data-target="25"></span></div>
           <p class="fund-text"><span id="fundText">$250K raised of $1M</span> · <strong id="fundRemaining">$750K to go</strong></p>
