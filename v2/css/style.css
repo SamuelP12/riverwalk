@@ -252,6 +252,13 @@ html.no-motion .gap-left,html.no-motion .gap-right{transform:none;opacity:1}
 @keyframes waveflow{to{background-position:-1200px 0}}
 .scroll-progress span{background:linear-gradient(90deg,var(--amber),var(--rust),var(--amber));background-size:200% 100%;animation:flowbar 3.5s linear infinite}
 @keyframes flowbar{to{background-position:-200% 0}}
+/* soft light sweep across the hero, like sun on water */
+.hero-media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.05) 50%,transparent 58%);background-size:240% 100%;animation:sheen 11s ease-in-out infinite}
+@keyframes sheen{0%{background-position:140% 0}55%,100%{background-position:-40% 0}}
+/* smooth nav underline */
+.nav-links a:not(.nav-give){position:relative}
+.nav-links a:not(.nav-give)::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--amber);transition:right .32s cubic-bezier(.2,.7,.2,1)}
+.nav-links a:not(.nav-give):hover::after{right:0}
 
 /* ===== fit: keep the hero & tall sections neat on every screen ===== */
 @media(max-height:800px) and (min-width:760px){

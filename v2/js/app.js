@@ -128,9 +128,9 @@
     });
   }
   function imgSrc(v) { return /^(https?:|\.\.\/images\/|images\/)/.test(v) ? (v.indexOf("images/") === 0 ? "../" + v : v) : "../images/" + v; }
-  function media(u, cls, weekCls) {
-    if (u.image) return '<div class="' + cls + '"><span class="' + weekCls + '">' + esc(u.week) + "</span><img src=\"" + esc(imgSrc(u.image)) + "\" alt=\"\" loading=\"lazy\"></div>";
-    return '<div class="' + cls + '"><span class="' + weekCls + '">' + esc(u.week) + "</span></div>";
+  function media(u, cls) {
+    if (u.image) return '<div class="' + cls + '"><img src="' + esc(imgSrc(u.image)) + '" alt="" loading="lazy"></div>';
+    return '<div class="' + cls + '"></div>';
   }
   function tags(u) {
     if (!u.tags || !u.tags.length) return "";
@@ -141,22 +141,22 @@
   var featureCard = document.getElementById("featureCard"), archiveGrid = document.getElementById("archiveGrid"),
       modal = document.getElementById("modal"), modalBody = document.getElementById("modalBody");
   function renderFeature(u) {
-    featureCard.innerHTML = media(u, "feature-media", "feature-week") +
-      '<div class="feature-text"><span class="feature-date">' + esc(u.date) + "</span><h3>" + esc(u.title) + "</h3><p>" + esc(u.summary) + "</p>" + tags(u) + "</div>";
+    featureCard.innerHTML = media(u, "feature-media") +
+      '<div class="feature-text"><h3>' + esc(u.title) + "</h3><p>" + esc(u.summary) + "</p>" + tags(u) + "</div>";
   }
   function renderArchive(list) {
     archiveGrid.innerHTML = "";
     list.forEach(function (u) {
       var c = document.createElement("button");
       c.className = "up-card";
-      c.innerHTML = media(u, "up-thumb", "up-week") + '<div class="up-meta"><span class="up-date">' + esc(u.date) + "</span><h4>" + esc(u.title) + "</h4><p>" + esc(u.summary) + "</p></div>";
+      c.innerHTML = media(u, "up-thumb") + '<div class="up-meta"><h4>' + esc(u.title) + "</h4><p>" + esc(u.summary) + "</p></div>";
       c.addEventListener("click", function () { openModal(u); });
       archiveGrid.appendChild(c);
     });
   }
   function openModal(u) {
     var body = (u.body || u.summary || "").split("\n").filter(Boolean).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
-    modalBody.innerHTML = media(u, "modal-media", "modal-week") + '<div class="modal-text"><span class="modal-date">' + esc(u.date) + "</span><h3>" + esc(u.title) + "</h3>" + body + tags(u) + "</div>";
+    modalBody.innerHTML = media(u, "modal-media") + '<div class="modal-text"><h3>' + esc(u.title) + "</h3>" + body + tags(u) + "</div>";
     modal.classList.add("open"); modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden"; if (lenis) lenis.stop();
   }
