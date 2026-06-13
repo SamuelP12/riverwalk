@@ -181,11 +181,21 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-h
 .fund-text strong{color:#fff;font-weight:720}
 
 /* ===== footer ===== */
-.footer{background:var(--ink);color:rgba(255,255,255,.8);padding:40px 0}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.footer .brand{color:#fff}
+.footer{background:var(--ink);color:rgba(255,255,255,.72);padding:clamp(40px,6vw,64px) 0 28px;border-top:1px solid rgba(255,255,255,.08)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1.3fr;gap:clamp(28px,5vw,64px);align-items:start}
+.footer .brand{color:#fff;font-size:1.2rem}
 .footer .brand-mark{color:var(--aqua)}
-.footer-note{font-size:.9rem;color:rgba(255,255,255,.6)}
+.footer-about{margin:16px 0 20px;font-size:.95rem;line-height:1.6;color:rgba(255,255,255,.62);max-width:34ch}
+.footer-cta{display:flex;gap:10px;flex-wrap:wrap}
+.footer-cta .btn{padding:11px 22px;font-size:.95rem}
+.footer-col h4{font-family:var(--display);font-weight:400;font-size:1.05rem;color:#fff;margin-bottom:14px}
+.footer-col a{display:block;font-size:.95rem;color:rgba(255,255,255,.7);padding:5px 0;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-contact{font-size:.95rem;line-height:1.6;color:rgba(255,255,255,.7);margin-bottom:6px}
+.footer-col .footer-contact + a{display:inline-block;color:var(--aqua);padding:0}
+.footer-fine{margin-top:16px;font-size:.82rem;line-height:1.6;color:rgba(255,255,255,.5)}
+.footer-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:clamp(30px,4vw,48px);padding-top:22px;border-top:1px solid rgba(255,255,255,.08);font-size:.82rem;color:rgba(255,255,255,.5)}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr;gap:30px}}
 
 /* ===== modal ===== */
 .modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
@@ -254,6 +264,12 @@ h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-h
 .why-ico svg{width:24px;height:24px}
 .why-card h3{font-size:1.18rem;margin-bottom:9px}
 .why-card p{color:var(--ink-soft);font-size:.97rem}
+
+/* ===== polish ===== */
+::selection{background:rgba(177,83,44,.22);color:var(--ink)}
+section[id]{scroll-margin-top:84px}
+:focus-visible{outline:2.5px solid var(--teal);outline-offset:3px;border-radius:5px}
+.btn:focus-visible,.tier:focus-visible,.nav-cta:focus-visible,.float-donate:focus-visible{outline-offset:4px}
 
 /* ===== conversion: donate + email + trust ===== */
 .btn-donate{background:var(--teal);color:#fff;box-shadow:0 14px 34px -12px rgba(177,83,44,.6)}

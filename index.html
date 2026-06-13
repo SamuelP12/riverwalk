@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Rye&display=swap" />
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
-  <link rel="stylesheet" href="css/style.css?v=17" />
+  <link rel="stylesheet" href="css/style.css?v=18" />
 </head>
 <body>
   <!-- scroll progress -->
@@ -305,14 +305,38 @@
   </section>
 
   <footer class="footer">
-    <div class="wrap footer-inner">
-      <div class="brand">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M2 20c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 6 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-        </svg>
-        <span>Winthrop Riverwalk</span>
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M2 20c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 6 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+          <span>Winthrop Riverwalk</span>
+        </div>
+        <p class="footer-about">A community-built path along the Chewuch and Methow rivers — opening downtown Winthrop's riverfront to everyone, safely and for free.</p>
+        <div class="footer-cta">
+          <a href="#involved" class="btn btn-donate js-donate">Donate</a>
+          <a href="#signup" class="btn btn-ghost">Subscribe</a>
+        </div>
       </div>
-      <p class="footer-note">Town of Winthrop &amp; Friends of the Riverwalk · Winthrop, Methow Valley, Washington · Updated weekly</p>
+      <nav class="footer-col" aria-label="Explore">
+        <h4>Explore</h4>
+        <a href="#why">Why it matters</a>
+        <a href="#plan">The plan</a>
+        <a href="#video">Watch the film</a>
+        <a href="#this-week">Weekly updates</a>
+        <a href="#involved">Donate</a>
+      </nav>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <p class="footer-contact">Rocklynn Culp<br>Town Planner, Town of Winthrop</p>
+        <a href="mailto:planner@townofwinthrop.com">planner@townofwinthrop.com</a>
+        <p class="footer-fine">Fiscal sponsor: Community Foundation of North Central Washington. Gifts may be tax-deductible.</p>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© 2026 Winthrop Riverwalk · A project of the Town of Winthrop &amp; the Friends of the Riverwalk</span>
+      <span>Winthrop · Methow Valley · Washington</span>
     </div>
   </footer>
 
