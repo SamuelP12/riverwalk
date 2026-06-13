@@ -146,6 +146,12 @@
   var videoEmbed = document.getElementById("videoEmbed");
   var videoPlay = document.getElementById("videoPlay");
   if (videoPlay && videoEmbed) {
+    var vid = videoEmbed.getAttribute("data-youtube");
+    if (vid) {
+      var thumb = new Image();
+      thumb.onload = function () { if (thumb.naturalWidth > 120) videoEmbed.style.backgroundImage = "url('" + thumb.src + "')"; };
+      thumb.src = "https://img.youtube.com/vi/" + vid + "/maxresdefault.jpg";
+    }
     videoPlay.addEventListener("click", function () {
       var id = videoEmbed.getAttribute("data-youtube");
       var ifr = document.createElement("iframe");
