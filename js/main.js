@@ -251,7 +251,7 @@
     });
   }
 
-  fetch("data/updates.json?v=3")
+  fetch("data/updates.json?v=4")
     .then(function (r) { if (!r.ok) throw new Error("fetch failed"); return r.json(); })
     .then(function (data) {
       var list = (data && data.updates) || [];

@@ -170,7 +170,7 @@
     modal.querySelectorAll("[data-close]").forEach(function (el) { el.addEventListener("click", closeModal); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeModal(); });
   }
-  fetch("../data/updates.json?v=3").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
+  fetch("../data/updates.json?v=4").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
     var list = (d && d.updates) || [];
     if (!list.length) return;
     list.sort(function (a, b) { var x = Date.parse(b.date), y = Date.parse(a.date); return (isNaN(x) ? 0 : x) - (isNaN(y) ? 0 : y); });
