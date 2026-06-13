@@ -193,6 +193,7 @@
       f.src = "https://www.youtube.com/embed/" + vid + "?autoplay=1&rel=0";
       f.title = "Winthrop Riverwalk film"; f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"; f.allowFullscreen = true;
       videoEmbed.innerHTML = ""; videoEmbed.appendChild(f);
+      videoEmbed.classList.add("is-playing");
     });
   }
 

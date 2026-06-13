@@ -181,7 +181,9 @@ html.no-motion .gap-left,html.no-motion .gap-right{transform:none;opacity:1}
 .film{padding:clamp(60px,9vw,120px) 0;background:var(--cream2)}
 .film-frame{position:relative;aspect-ratio:16/9;border-radius:calc(var(--r) + 6px);overflow:hidden;margin-top:18px;background:#1a2114 center/cover;box-shadow:0 40px 90px -50px rgba(34,48,28,.7)}
 .film-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.film-frame::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(34,48,28,.15),rgba(15,20,12,.55))}
+.film-frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at center,rgba(34,48,28,.15),rgba(15,20,12,.55))}
+.film-frame.is-playing::after{display:none}
+.film-frame.is-playing{background:#000}
 .film-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:84px;height:84px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);background:rgba(255,255,255,.16);backdrop-filter:blur(6px);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .25s,background .25s}
 .film-play svg{width:34px;height:34px;margin-left:4px}
 .film-play:hover{transform:translate(-50%,-50%) scale(1.08);background:rgba(255,255,255,.28)}
@@ -224,7 +226,8 @@ html.no-motion .gap-left,html.no-motion .gap-right{transform:none;opacity:1}
 .foot-links a:hover{color:#fff}
 .foot-contact p{font-size:.95rem;color:rgba(247,242,231,.7);margin-bottom:6px}
 .foot-contact a{color:var(--amber)}
-.foot-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(247,242,231,.1);font-size:.82rem;color:rgba(247,242,231,.5);text-align:left}
+.foot-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:clamp(22px,3vw,30px);font-size:.82rem;color:rgba(247,242,231,.55);text-align:left}
+.foot-bottom a{color:var(--amber)}
 .foot-bottom a{color:var(--amber)}
 @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
 
@@ -256,8 +259,8 @@ html.no-motion .gap-left,html.no-motion .gap-right{transform:none;opacity:1}
 .scroll-progress span{background:linear-gradient(90deg,var(--amber),var(--rust),var(--amber));background-size:200% 100%;animation:flowbar 3.5s linear infinite}
 @keyframes flowbar{to{background-position:-200% 0}}
 /* soft light sweep across the hero, like sun on water */
-.hero-media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.05) 50%,transparent 58%);background-size:240% 100%;animation:sheen 11s ease-in-out infinite}
-@keyframes sheen{0%{background-position:140% 0}55%,100%{background-position:-40% 0}}
+.hero-media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.07) 50%,transparent 58%);background-size:240% 100%;animation:sheen 2.6s ease-out 0.6s 1 both}
+@keyframes sheen{0%{background-position:140% 0}100%{background-position:-40% 0}}
 /* smooth nav underline */
 .nav-links a:not(.nav-give){position:relative}
 .nav-links a:not(.nav-give)::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--amber);transition:right .32s cubic-bezier(.2,.7,.2,1)}
