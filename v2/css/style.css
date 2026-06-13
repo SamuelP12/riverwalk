@@ -127,7 +127,7 @@ html.no-motion .gap-left,html.no-motion .gap-right{transform:none;opacity:1}
 .band::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%,rgba(14,19,11,.34),rgba(14,19,11,.66))}
 .band-quote{position:relative;z-index:1;max-width:26ch;margin:0 auto;padding:0 clamp(24px,6vw,40px)}
 .band-quote span{display:block}
-.bq-small{font-family:var(--body);font-size:clamp(.78rem,1.7vw,1.02rem);letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--amber);margin-bottom:16px;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.bq-small{font-family:var(--body);font-size:clamp(.84rem,1.8vw,1.1rem);letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#f3bd6e;margin-bottom:18px;text-shadow:0 2px 16px rgba(0,0,0,.85),0 1px 3px rgba(0,0,0,.8)}
 .bq-big{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1.6rem,4.2vw,2.8rem);line-height:1.2;text-shadow:0 2px 30px rgba(0,0,0,.65),0 1px 4px rgba(0,0,0,.5)}
 .band-dark::after{background:linear-gradient(180deg,rgba(15,20,12,.55),rgba(15,20,12,.72))}
 .big-quote{position:relative;z-index:1;font-family:'Dancing Script',cursive;font-weight:600;font-size:clamp(2rem,6vw,4.4rem);line-height:1.2;text-shadow:0 2px 26px rgba(0,0,0,.55);padding:0 24px}
