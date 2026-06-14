@@ -44,6 +44,7 @@ html.no-motion .hero-title .line > span{transform:none!important}
 .nav.scrolled{background:rgba(247,242,231,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(34,48,28,.08);padding:13px clamp(22px,5vw,52px)}
 .brand{display:flex;align-items:center;gap:10px;font-family:'Rye',var(--display);font-weight:400;font-size:1.04rem;letter-spacing:.01em;color:var(--cream)}
 .brand svg{width:28px;height:28px}
+.brand-logo{height:38px;width:auto;display:block;padding:4px 8px;background:rgba(245,239,225,.94);border-radius:7px;box-shadow:0 1px 6px rgba(0,0,0,.12)}
 .nav.scrolled .brand{color:var(--ink)}
 .nav-links{display:flex;align-items:center;gap:clamp(16px,2.4vw,32px)}
 .nav-links a{font-size:.93rem;font-weight:500;color:rgba(255,255,255,.9);transition:color .25s}

@@ -139,6 +139,7 @@
     return '<div class="' + cls + '"><span class="' + weekCls + '">' + esc(u.week) + "</span></div>";
   }
   function tags(u) {
+    return ""; // tags hidden on update cards per request
     if (!u.tags || !u.tags.length) return "";
     return '<div class="tags">' + u.tags.map(function (t) { return '<span class="tag">' + esc(t) + "</span>"; }).join("") + "</div>";
   }
@@ -174,7 +175,7 @@
     modal.querySelectorAll("[data-close]").forEach(function (el) { el.addEventListener("click", closeModal); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeModal(); });
   }
-  fetch("../data/updates.json?v=5").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
+  fetch("../data/updates.json?v=6").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
     var list = (d && d.updates) || [];
     if (!list.length) return;
     list.sort(function (a, b) { var x = Date.parse(b.date), y = Date.parse(a.date); return (isNaN(x) ? 0 : x) - (isNaN(y) ? 0 : y); });
