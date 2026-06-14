@@ -198,7 +198,7 @@
   }
 
   /* ---------- live figures + donate ---------- */
-  var donateUrl = "", selAmount = "100";
+  var donateUrl = "", selAmount = "100", freq = "once";
   var IMPACT = {
     "25": "A gift of $25 plants native willow and dogwood to hold the riverbank.",
     "50": "A gift of $50 helps fund an interpretive sign along the trail.",
@@ -212,12 +212,16 @@
   function updateDonate() {
     document.querySelectorAll(".js-donate").forEach(function (a) {
       if (!donateUrl) return;
-      var url = donateUrl;
-      if (a.id === "donateBtn" && selAmount) url += (url.indexOf("?") > -1 ? "&" : "?") + "amount=" + selAmount;
+      var url = donateUrl, q = [];
+      if (a.id === "donateBtn") {
+        if (selAmount) q.push("amount=" + selAmount);
+        if (freq === "monthly") { q.push("frequency=monthly"); q.push("recurring=1"); }
+      }
+      if (q.length) url += (url.indexOf("?") > -1 ? "&" : "?") + q.join("&");
       a.href = url; a.target = "_blank"; a.rel = "noopener";
     });
     var db = document.getElementById("donateBtn");
-    if (db) db.textContent = selAmount ? "Donate $" + Number(selAmount).toLocaleString() : "Donate";
+    if (db) db.textContent = (selAmount ? "Donate $" + Number(selAmount).toLocaleString() : "Donate") + (freq === "monthly" ? " / mo" : "");
   }
   var tiers = document.getElementById("tiers");
   if (tiers) {
@@ -231,6 +235,44 @@
         updateDonate();
       });
     });
+  }
+  var freqEl = document.getElementById("freq");
+  if (freqEl) {
+    freqEl.querySelectorAll(".freq-opt").forEach(function (b) {
+      b.addEventListener("click", function () {
+        freqEl.querySelectorAll(".freq-opt").forEach(function (x) { x.classList.remove("is-on"); });
+        b.classList.add("is-on");
+        freq = b.getAttribute("data-freq");
+        updateDonate();
+      });
+    });
+  }
+
+  /* ---------- share tools ---------- */
+  var pageUrl = location.href.split("#")[0].split("?")[0];
+  var shareText = "Help build the Winthrop Riverwalk — a safe path along the river, for everyone.";
+  var fb = document.getElementById("shareFb"); if (fb) fb.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl);
+  var xb = document.getElementById("shareX"); if (xb) xb.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+  var mb = document.getElementById("shareMail"); if (mb) mb.href = "mailto:?subject=" + encodeURIComponent("The Winthrop Riverwalk") + "&body=" + encodeURIComponent(shareText + "\n\n" + pageUrl);
+  var cb = document.getElementById("shareCopy");
+  if (cb) cb.addEventListener("click", function () {
+    var l = document.getElementById("copyLabel");
+    function done() { if (l) { l.textContent = "Copied!"; setTimeout(function () { l.textContent = "Copy link"; }, 1800); } }
+    if (navigator.clipboard) navigator.clipboard.writeText(pageUrl).then(done).catch(done); else done();
+  });
+
+  /* ---------- scrollspy: highlight current section in nav ---------- */
+  var navAnchors = document.querySelectorAll(".nav-links a");
+  if (navAnchors.length) {
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (en.isIntersecting) {
+          var h = "#" + en.target.id;
+          navAnchors.forEach(function (a) { a.classList.toggle("active", a.getAttribute("href") === h); });
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+    ["story", "plan", "updates", "give"].forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
   }
   fetch("../data/site.json?v=3").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
     try {

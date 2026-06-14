@@ -7,6 +7,7 @@
   <title>Winthrop Riverwalk — Help Close the Gap</title>
   <meta name="description" content="A safe, riverfront path along the Chewuch and Methow rivers in the heart of downtown Winthrop. Help us raise $1.2 million to finish the trail." />
   <meta name="theme-color" content="#23301f" />
+  <link rel="preload" as="image" href="../images/river-cascades.jpg" fetchpriority="high" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2336452f'/%3E%3Cpath d='M3 19c4 0 4-4 8-4s4 4 8 4 4-4 8-4 4 4 5 4' fill='none' stroke='%23e0a24a' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Winthrop Riverwalk — Help Close the Gap" />
@@ -17,9 +18,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Dancing+Script:wght@600&display=swap" />
-  <link rel="stylesheet" href="css/style.css?v=8" />
+  <link rel="stylesheet" href="css/style.css?v=9" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    "name": "Winthrop Riverwalk",
+    "url": "https://samuelp12.github.io/riverwalk/v2/",
+    "logo": "https://samuelp12.github.io/riverwalk/images/logo.png",
+    "image": "https://samuelp12.github.io/riverwalk/images/river-cascades.jpg",
+    "description": "A safe, six-foot-wide riverfront path along the Chewuch and Methow rivers in the heart of downtown Winthrop, Washington. A project of the Town of Winthrop and the Friends of the Riverwalk.",
+    "areaServed": "Winthrop, Methow Valley, Washington",
+    "founder": ["Town of Winthrop", "Friends of the Riverwalk"],
+    "email": "planner@townofwinthrop.com"
+  }
+  </script>
 </head>
 <body>
+  <a class="skip" href="#story">Skip to content</a>
   <div class="scroll-progress"><span id="scrollBar"></span></div>
 
   <!-- nav -->
@@ -166,6 +182,17 @@
       <h2 class="give-title reveal">Help us finish the Riverwalk.</h2>
       <p class="give-lead reveal">The Town of Winthrop and the Friends of the Riverwalk are raising <strong id="giveGoal">$1.2 million</strong> to complete the trail. <span class="give-match">Your gift is the local match that unlocks a $2.06 million Washington State grant</span> — so every dollar you give brings state funding to the river.</p>
 
+      <ul class="give-proof reveal">
+        <li>#1‑ranked by 521 residents</li>
+        <li>$2.06M state grant secured</li>
+        <li>Easements donated by neighbors</li>
+      </ul>
+
+      <div class="freq reveal" id="freq" role="group" aria-label="Giving frequency">
+        <button type="button" class="freq-opt is-on" data-freq="once">One‑time</button>
+        <button type="button" class="freq-opt" data-freq="monthly">Monthly</button>
+      </div>
+
       <div class="tiers reveal" id="tiers">
         <button class="tier" data-amount="25">$25</button>
         <button class="tier" data-amount="50">$50</button>
@@ -181,6 +208,14 @@
       </div>
       <p class="give-fine reveal">100% goes to the Riverwalk. Gifts are managed by our fiscal sponsor, the Community Foundation of North Central Washington, and may be tax‑deductible.</p>
 
+      <div class="share reveal" aria-label="Share the campaign">
+        <span>Can't give right now? Spread the word:</span>
+        <a class="share-btn" id="shareFb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9z"/></svg>Facebook</a>
+        <a class="share-btn" id="shareX" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3l-6.6 7.5L22 21h-5.8l-4-5.3L7.5 21H4.5l7-8L3 3h6l3.6 4.8L17.5 3z"/></svg>X</a>
+        <a class="share-btn" id="shareMail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a>
+        <button class="share-btn" id="shareCopy" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg><span id="copyLabel">Copy link</span></button>
+      </div>
+
       <form class="news reveal" id="signupForm" novalidate>
         <label for="signupEmail">Or follow along — Riverwalk news and milestones, straight to your inbox.</label>
         <div class="news-row">
@@ -189,6 +224,21 @@
         </div>
         <p class="news-msg" id="signupMsg" role="status"></p>
       </form>
+    </div>
+  </section>
+
+  <!-- faq -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <p class="sec-eyebrow reveal">Good to know</p>
+      <h2 class="sec-title reveal">Questions, answered.</h2>
+      <div class="faq-list reveal">
+        <details class="faq-item"><summary>Is the Riverwalk really happening?</summary><p>Yes. The first segment — an underpass of the Chewuch River Bridge — is funded and slated for construction in 2026, and a $2.06 million Washington State grant is already secured for the next segment. Landowners have donated the easements the route needs.</p></details>
+        <details class="faq-item"><summary>Where does my donation go?</summary><p>100% goes to building the Riverwalk. Local donations are the match that unlocks the $2.06 million state grant, so every dollar you give brings state funding to the river. Gifts are received and managed by our fiscal sponsor, the Community Foundation of North Central Washington.</p></details>
+        <details class="faq-item"><summary>Is my gift tax‑deductible?</summary><p>Gifts are managed by the Community Foundation of North Central Washington and may be tax‑deductible — please consult your tax advisor.</p></details>
+        <details class="faq-item"><summary>What exactly is being built?</summary><p>A continuous, six‑foot‑wide, hard‑surfaced path on a micro‑pile support structure, built in segments along the Chewuch and Methow rivers. The project also replaces failing bank stabilization at the confluence and restores riparian habitat for native fish and wildlife.</p></details>
+        <details class="faq-item"><summary>How else can I help?</summary><p>Give monthly, volunteer on a work day, or — if you own riverfront property — consider donating an easement. You can also simply spread the word. <a href="mailto:planner@townofwinthrop.com?subject=Winthrop%20Riverwalk">Email the team</a> to get involved.</p></details>
+      </div>
     </div>
   </section>
 
@@ -214,6 +264,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="js/app.js?v=8"></script>
+  <script src="js/app.js?v=9"></script>
 </body>
 </html>
