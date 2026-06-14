@@ -174,7 +174,7 @@
     modal.querySelectorAll("[data-close]").forEach(function (el) { el.addEventListener("click", closeModal); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeModal(); });
   }
-  fetch("../data/updates.json?v=4").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
+  fetch("../data/updates.json?v=5").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
     var list = (d && d.updates) || [];
     if (!list.length) return;
     list.sort(function (a, b) { var x = Date.parse(b.date), y = Date.parse(a.date); return (isNaN(x) ? 0 : x) - (isNaN(y) ? 0 : y); });
@@ -182,7 +182,7 @@
     renderArchive(list.slice(1, 4));
     if (anim && ST) ST.refresh();
   }).catch(function () {
-    if (featureCard) featureCard.innerHTML = '<div class="feature-text"><span class="feature-date">Heads up</span><h3>Updates load on the live site</h3><p>The weekly updates load from data/updates.json — view this on the published URL.</p></div>';
+    if (featureCard) featureCard.innerHTML = '<div class="feature-text"><span class="feature-date">Heads up</span><h3>Updates load on the live site</h3><p>The weekly updates load from data/updates.json; view this on the published URL.</p></div>';
   });
 
   /* ---------- video ---------- */
@@ -206,7 +206,7 @@
     "100": "A gift of $100 helps lay the hard-surface path along the water.",
     "250": "A gift of $250 sets a stretch of boardwalk railing.",
     "1000": "A gift of $1,000 funds a span of the trail's micro-pile support.",
-    "": "Give what feels right — every dollar helps unlock the state grant."
+    "": "Give what feels right; every dollar helps unlock the state grant."
   };
   function moneyWords(n) { if (n >= 1e6) { var m = n / 1e6; return "$" + (m % 1 ? +m.toFixed(2) : m) + " million"; } if (n >= 1e3) return "$" + Math.round(n / 1e3) + "K"; return "$" + Math.round(n); }
   function moneyShort(n) { if (n >= 1e6) { return "$" + (Math.round(n / 1e4) / 100) + "M"; } return "$" + Math.round(n / 1e3) + "K"; }
@@ -260,7 +260,7 @@
       var val = (input.value || "").trim();
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val)) { msg.textContent = "Please enter a valid email address."; msg.className = "news-msg show err"; input.focus(); return; }
       var endpoint = form.getAttribute("data-endpoint");
-      function done() { form.reset(); msg.innerHTML = "🌲 You're on the list — see you on the river."; msg.className = "news-msg show"; }
+      function done() { form.reset(); msg.innerHTML = "🌲 You're on the list; see you on the river."; msg.className = "news-msg show"; }
       if (endpoint) fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ email: val }) }).then(done).catch(done);
       else done();
     });
