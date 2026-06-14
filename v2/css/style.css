@@ -44,6 +44,7 @@ html.no-motion .hero-title .line > span{transform:none!important}
 .nav.scrolled{background:rgba(247,242,231,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(34,48,28,.08);padding:13px clamp(22px,5vw,52px)}
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:1.12rem;color:var(--cream)}
 .brand svg{width:28px;height:28px}
+.brand-logo{height:38px;width:auto;display:block;padding:4px 8px;background:rgba(245,239,225,.94);border-radius:7px;box-shadow:0 1px 6px rgba(0,0,0,.12)}
 .nav.scrolled .brand{color:var(--ink)}
 .nav-links{display:flex;align-items:center;gap:clamp(16px,2.4vw,32px)}
 .nav-links a{font-size:.93rem;font-weight:500;color:rgba(255,255,255,.9);transition:color .25s}
@@ -72,8 +73,8 @@ html.no-motion .hero-title .line > span{transform:none!important}
 .hero-inner{position:relative;z-index:2;max-width:var(--maxw);width:100%;margin:0 auto;padding:0 clamp(22px,5vw,52px) clamp(54px,9vh,110px)}
 .hero-eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:20px;max-width:40ch}
 .hero-title{font-size:clamp(2.8rem,8.5vw,6.6rem);font-weight:500;line-height:.98;letter-spacing:-.02em;text-shadow:0 4px 40px rgba(0,0,0,.4)}
-.hero-title .line{display:block;overflow:hidden;padding-bottom:.04em}
-.hero-title .line > span{display:inline-block;transform:translateY(115%)}
+.hero-title .line{display:block;overflow:hidden;padding-bottom:.22em}
+.hero-title .line > span{display:inline-block;transform:translateY(135%)}
 .hero-title em{color:var(--amber);font-style:italic}
 .hero-sub{margin:26px 0 32px;font-size:clamp(1.05rem,1.9vw,1.35rem);max-width:46ch;color:rgba(255,255,255,.92);text-shadow:0 2px 18px rgba(0,0,0,.4)}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}

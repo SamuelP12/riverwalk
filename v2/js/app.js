@@ -135,6 +135,7 @@
     return '<div class="' + cls + '"></div>';
   }
   function tags(u) {
+    return ""; // tags hidden on update cards per request
     if (!u.tags || !u.tags.length) return "";
     return '<div class="tags">' + u.tags.map(function (t) { return '<span class="tag">' + esc(t) + "</span>"; }).join("") + "</div>";
   }
@@ -170,7 +171,7 @@
     modal.querySelectorAll("[data-close]").forEach(function (el) { el.addEventListener("click", closeModal); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeModal(); });
   }
-  fetch("../data/updates.json?v=4").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
+  fetch("../data/updates.json?v=6").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
     var list = (d && d.updates) || [];
     if (!list.length) return;
     list.sort(function (a, b) { var x = Date.parse(b.date), y = Date.parse(a.date); return (isNaN(x) ? 0 : x) - (isNaN(y) ? 0 : y); });
@@ -180,7 +181,7 @@
     if (anim) GS.from(".archive .up-card", { opacity: 0, y: 30, duration: .9, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: "#archiveGrid", start: "top 90%" } });
     if (anim && ST) ST.refresh();
   }).catch(function () {
-    if (featureCard) featureCard.innerHTML = '<div class="feature-text"><span class="feature-date">Heads up</span><h3>Updates load on the live site</h3><p>The weekly updates load from data/updates.json — view this on the published URL.</p></div>';
+    if (featureCard) featureCard.innerHTML = '<div class="feature-text"><span class="feature-date">Heads up</span><h3>Updates load on the live site</h3><p>The weekly updates load from data/updates.json; view this on the published URL.</p></div>';
   });
 
   /* ---------- video ---------- */
@@ -205,7 +206,7 @@
     "100": "A gift of $100 helps lay the hard-surface path along the water.",
     "250": "A gift of $250 sets a stretch of boardwalk railing.",
     "1000": "A gift of $1,000 funds a span of the trail's micro-pile support.",
-    "": "Give what feels right — every dollar helps unlock the state grant."
+    "": "Give what feels right; every dollar helps unlock the state grant."
   };
   function moneyWords(n) { if (n >= 1e6) { var m = n / 1e6; return "$" + (m % 1 ? +m.toFixed(2) : m) + " million"; } if (n >= 1e3) return "$" + Math.round(n / 1e3) + "K"; return "$" + Math.round(n); }
   function moneyShort(n) { if (n >= 1e6) { return "$" + (Math.round(n / 1e4) / 100) + "M"; } return "$" + Math.round(n / 1e3) + "K"; }
@@ -250,7 +251,7 @@
 
   /* ---------- share tools ---------- */
   var pageUrl = location.href.split("#")[0].split("?")[0];
-  var shareText = "Help build the Winthrop Riverwalk — a safe path along the river, for everyone.";
+  var shareText = "Help build the Winthrop Riverwalk; a safe path along the river, for everyone.";
   var fb = document.getElementById("shareFb"); if (fb) fb.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl);
   var xb = document.getElementById("shareX"); if (xb) xb.href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
   var mb = document.getElementById("shareMail"); if (mb) mb.href = "mailto:?subject=" + encodeURIComponent("The Winthrop Riverwalk") + "&body=" + encodeURIComponent(shareText + "\n\n" + pageUrl);
@@ -301,7 +302,7 @@
       var val = (input.value || "").trim();
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val)) { msg.textContent = "Please enter a valid email address."; msg.className = "news-msg show err"; input.focus(); return; }
       var endpoint = form.getAttribute("data-endpoint");
-      function done() { form.reset(); msg.innerHTML = "🌲 You're on the list — see you on the river."; msg.className = "news-msg show"; }
+      function done() { form.reset(); msg.innerHTML = "🌲 You're on the list; see you on the river."; msg.className = "news-msg show"; }
       if (endpoint) fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ email: val }) }).then(done).catch(done);
       else done();
     });
